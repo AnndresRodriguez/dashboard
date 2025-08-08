@@ -1,1 +1,74 @@
-/* You can add global styles to this file, and also import other style files */
+
+@use "tailwindcss";
+@import "material-design-icons-iconfont/dist/material-design-icons.css";
+
+@theme {
+  --font-family-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-family-serif: "Roboto", ui-serif, Georgia, serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+
+  /* Design System Colors */
+  --color-primary: #ffffff;
+  --color-primary-light: #ffffff;
+  --color-primary-dark: #1f214a;
+
+  --color-secondary: #696efa;
+  --color-secondary-light: #696ffb;
+  --color-secondary-dark: #3a3c8a;
+
+  --color-white-60: #f7f7ff;
+  --color-white-20: #edeeff;
+  --color-white-16: #f7f7ff;
+  --color-white-8: #edeeff;
+
+  --color-yellow: #ffd74b;
+  --color-orange: #ff9e2b;
+
+  --color-red-light: #fdd5da;
+  --color-red-dark: #ff5e75;
+
+  --color-green-light: #b8e8d4;
+  --color-green-dark: #2cc483;
+
+  --color-blue-light: #4b4bff;
+  --color-blue-dark: #0000ff;
+
+  --color-black-60: #5e5e66;
+  --color-black-16: #c5c5d6;
+  --color-black-4: #e5e6ff;
+
+
+  --color-blue: #696ffb;
+  --color-blue-60: #9da1fd;
+  --color-blue-32: #c1c3fe;
+  --color-blue-20: #d0d2fe;
+  --color-blue-12: #dbdcff;
+  --color-blue-8: #e0e1ff;
+
+  --font-weight-black: 900;
+
+}
+
+/* Configuración global de Roboto */
+* {
+  font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+

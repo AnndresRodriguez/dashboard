@@ -1,0 +1,5 @@
+# Ignorar archivos específicos
+src/app/sales/domain/Sales.ts
+
+# O ignorar directorios completos
+# src/app/sales/

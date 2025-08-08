@@ -1,0 +1,39 @@
+<div class="card-metric">
+  <div class="card-metric-title">
+    <h3 class="text-black font-bold text-lg"> {{ title() }} </h3>
+  </div>
+  <div class="card-metric-value">
+    <h3 class="text-black font-bold text-[34px]"> $ {{ value() | number: '1.0-0' }} </h3>
+  </div>
+
+  <div class="card-metric-percentage">
+    <div class="flex items-center justify-center gap-1 rounded-md p-1"
+    [class.bg-green-light]="status() === StatusMetricEnum.UP"
+    [class.bg-red-light]="status() === StatusMetricEnum.DOWN"
+    [class.bg-blue-8]="status() === StatusMetricEnum.EQUAL">
+
+
+    <div>
+      <span class="material-icons text-black icon-percentage">
+        @switch (status()) {
+          @case (StatusMetricEnum.UP) {
+            arrow_upward
+          }
+          @case (StatusMetricEnum.DOWN) {
+            arrow_downward
+          }
+          @default {
+            density_large
+          }
+        }
+      </span>
+    </div>
+
+
+    <h3 class="text-black font-normal text-sm"> {{ percentage() }} </h3>
+    </div>
+    <div class="card-metric-percentage-text">
+      <h3 class="text-black-60 font-normal text-sm"> {{ percentageText() }} </h3>
+    </div>
+  </div>
+</div>

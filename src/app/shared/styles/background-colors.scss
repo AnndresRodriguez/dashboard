@@ -1,0 +1,88 @@
+/* Estilos específicos de la aplicación */
+/* Roboto ya está configurado globalmente en styles.scss con Tailwind CSS */
+
+/* Utilidades para colores personalizados */
+.bg-primary {
+  background-color: var(--color-primary);
+}
+.bg-primary-light {
+  background-color: var(--color-primary-light);
+}
+.bg-primary-dark {
+  background-color: var(--color-primary-dark);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+.bg-secondary-light {
+  background-color: var(--color-secondary-light);
+}
+.bg-secondary-dark {
+  background-color: var(--color-secondary-dark);
+}
+
+/* Colores de azul */
+.bg-blue {
+  background-color: var(--color-blue);
+}
+.bg-blue-60 {
+  background-color: var(--color-blue-60);
+}
+.bg-blue-32 {
+  background-color: var(--color-blue-32);
+}
+.bg-blue-20 {
+  background-color: var(--color-blue-20);
+}
+.bg-blue-12 {
+  background-color: var(--color-blue-12);
+}
+.bg-blue-8 {
+  background-color: var(--color-blue-8);
+}
+
+/* Colores de acento */
+.bg-yellow {
+  background-color: var(--color-yellow);
+}
+.bg-orange {
+  background-color: var(--color-orange);
+}
+
+/* Colores de estado */
+.bg-green-light {
+  background-color: var(--color-green-light);
+}
+.bg-green-dark {
+  background-color: var(--color-green-dark);
+}
+.bg-red-light {
+  background-color: var(--color-red-light);
+}
+.bg-red-dark {
+  background-color: var(--color-red-dark);
+}
+
+/* Colores neutros */
+.bg-white-60 {
+  background-color: var(--color-white-60);
+}
+.bg-white-20 {
+  background-color: var(--color-white-20);
+}
+.bg-white-16 {
+  background-color: var(--color-white-16);
+}
+.bg-white-8 {
+  background-color: var(--color-white-8);
+}
+.bg-black-60 {
+  background-color: var(--color-black-60);
+}
+.bg-black-16 {
+  background-color: var(--color-black-16);
+}
+.bg-black-4 {
+  background-color: var(--color-black-4);
+}

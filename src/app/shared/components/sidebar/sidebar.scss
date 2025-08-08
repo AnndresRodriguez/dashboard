@@ -1,0 +1,76 @@
+// @use "./styles/header.scss";
+@use "./styles/buttons.scss";
+@use "./styles/footer.scss";
+// @use "./styles/media.scss";
+
+.sidebar {
+  width: 4rem;
+  height: 96vh;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e6ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  &.expanded {
+    width: 11.5rem;
+  }
+}
+
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  height: 28px;
+
+  .logo-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 8px;
+  }
+}
+
+.sidebar-header-expanded {
+  justify-content: space-between;
+}
+
+.expand-btn {
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border: solid 1px #00000029;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    background-color: #edeeff;
+  }
+
+  &:focus {
+    background-color: #ffffff
+  }
+
+  .material-icons {
+    font-size: 16px;
+    color: #5e5e66;
+    transition: transform 0.3s ease;
+
+    &.rotated {
+      transform: rotate(180deg);
+    }
+  }
+}

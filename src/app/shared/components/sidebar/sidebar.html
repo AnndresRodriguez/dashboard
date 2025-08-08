@@ -1,0 +1,177 @@
+<div class="sidebar" [class.expanded]="isExpanded()">
+  <header class="container-header-body">
+    <!-- Logo y botón de expandir -->
+    <div class="sidebar-header" [class.sidebar-header-expanded]="isExpanded()">
+      <div class="logo-name-container">
+        <div class="logo-section">
+          <div class="logo">
+            <div class="logo-icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="14" cy="14" r="14" fill="#696FFB"/>
+                <circle cx="18.3077" cy="18.3077" r="7.89744" fill="#B8BBFF"/>
+                <circle cx="9.6923" cy="9.6923" r="7.89744" fill="#B8BBFF"/>
+                <circle cx="14" cy="14" r="5.83333" fill="white"/>
+                </svg>
+            </div>
+          </div>
+        </div>
+
+        @if (isExpanded()) {
+          <div class="logo-text-container">
+            <p class="pl-1 text-blue font-black">FinData</p>
+          </div>
+        }
+      </div>
+
+      <div class="expand-btn" (click)="toggleSidebar()" tabindex="0" role="button" aria-label="Toggle sidebar">
+        <span class="material-icons">
+          {{ isExpanded() ? 'arrow_back' : 'arrow_forward' }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Navegación principal -->
+    <nav class="sidebar-nav pt-8">
+      <ul class="nav-list" [class.nav-list-expanded]="!isExpanded()">
+        <li class="nav-item" [class.active]="activeItem() === 'dashboard'">
+          <a href="#" class="nav-link" (click)="activeItem.set('dashboard')">
+            <span class="material-icons">dashboard</span>
+            @if (isExpanded()) {
+              <span class="nav-text">Dashboard</span>
+            }
+          </a>
+        </li>
+        <li class="nav-item" [class.active]="activeItem() === 'payments'">
+          <a href="#" class="nav-link" (click)="activeItem.set('payments')">
+            <span class="material-icons">credit_card</span>
+            @if (isExpanded()) {
+              <span class="nav-text">Payment</span>
+            }
+          </a>
+        </li>
+        <li class="nav-item" [class.active]="activeItem() === 'customers'">
+          <a href="#" class="nav-link" (click)="activeItem.set('customers')">
+            <span class="material-icons">group</span>
+            @if (isExpanded()) {
+              <span class="nav-text">Customers</span>
+            }
+          </a>
+        </li>
+        <li class="nav-item" [class.active]="activeItem() === 'messages'">
+          <a href="#" class="nav-link" (click)="activeItem.set('messages')">
+            <span class="material-icons">chat_bubble_outline</span>
+            @if (isExpanded()) {
+              <span class="nav-text">Messages</span>
+            }
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Separador -->
+    <div class="nav-separator"></div>
+
+    <!-- Segunda sección de navegación -->
+    <nav class="sidebar-nav">
+      <ul class="nav-list" [class.nav-list-expanded]="!isExpanded()">
+        <li class="nav-item" [class.active]="activeItem() === 'products'">
+          <a href="#" class="nav-link" (click)="activeItem.set('products')">
+            <span class="material-icons">shopping_bag</span>
+            @if (isExpanded()) {
+              <span class="nav-text">Product</span>
+            }
+          </a>
+        </li>
+        <li class="nav-item" [class.active]="activeItem() === 'invoices'">
+          <a href="#" class="nav-link" (click)="activeItem.set('invoices')">
+            <span class="material-icons">receipt</span>
+            @if (isExpanded()) {
+              <span class="nav-text">Invoice</span>
+            }
+          </a>
+        </li>
+        <li class="nav-item" [class.active]="activeItem() === 'analytics'">
+          <a href="#" class="nav-link" (click)="activeItem.set('analytics')">
+            <span class="material-icons">trending_up</span>
+            @if (isExpanded()) {
+              <span class="nav-text">Analytics</span>
+            }
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Separador -->
+      <div class="nav-separator"></div>
+
+    <!-- Navegación secundaria -->
+    <nav class="sidebar-nav">
+      <ul class="nav-list" [class.nav-list-expanded]="!isExpanded()">
+        <li class="nav-item" [class.active]="activeItem() === 'settings'">
+          <a href="#" class="nav-link" (click)="activeItem.set('settings')">
+            <span class="material-icons">settings</span>
+            @if (isExpanded()) {
+              <span class="nav-text">Settings</span>
+            }
+          </a>
+        </li>
+        <li class="nav-item" [class.active]="activeItem() === 'security'">
+          <a href="#" class="nav-link" (click)="activeItem.set('security')">
+            <span class="material-icons">security</span>
+            @if (isExpanded()) {
+              <span class="nav-text">Security</span>
+            }
+          </a>
+        </li>
+        <li class="nav-item" [class.active]="activeItem() === 'help'">
+          <a href="#" class="nav-link" (click)="activeItem.set('help')">
+            <span class="material-icons">help_outline</span>
+            @if (isExpanded()) {
+              <span class="nav-text">Help</span>
+            }
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="nav-separator"></div>
+
+    <!-- Logout -->
+
+    <nav class="sidebar-nav">
+      <ul class="nav-list" [class.nav-list-expanded]="!isExpanded()">
+        <li class="nav-item" [class.active]="activeItem() === 'logout'">
+          <a href="#" class="nav-link" (click)="activeItem.set('logout')">
+            <span class="material-icons">logout</span>
+            @if (isExpanded()) {
+              <span class="nav-text">Log Out</span>
+            }
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+
+  </header>
+
+  <div class="container-footer">
+    <div class="theme-toggle">
+        @if (isExpanded()) {
+          <span class="theme-text">Light</span>
+        }
+        <div class="toggle-switch" (click)="toggleTheme()" tabindex="0" role="button" aria-label="Toggle theme">
+          <div class="toggle-slider" [class.dark]="isDarkTheme()">
+            <span class="material-icons toggle-icon">
+              {{ isDarkTheme() ? 'dark_mode' : 'light_mode' }}
+            </span>
+          </div>
+        </div>
+        @if (isExpanded()) {
+          <span class="theme-text">Dark</span>
+        }
+      </div>
+  </div>
+
+
+
+</div>

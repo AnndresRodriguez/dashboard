@@ -1,0 +1,19 @@
+.navbar {
+  height: 64px;
+  width: 100%;
+  background-color: var(--color-primary);
+  border-bottom: 1px solid #00000029;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container-title, .container-avatar {
+  padding: 16px 0 16px 32px;
+}
+
+.container-menu-avatar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

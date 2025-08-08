@@ -1,0 +1,46 @@
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  .theme-text {
+    font-size: 12px;
+    color: #5e5e66;
+    font-weight: 500;
+  }
+
+  .toggle-switch {
+    width: 48px;
+    height: 24px;
+    background-color: #f7f7ff;
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    .toggle-slider {
+      width: 20px;
+      height: 20px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.dark {
+        left: 26px;
+        background-color: #696ffb;
+      }
+
+      .toggle-icon {
+        font-size: 12px;
+        color: #ffd74b;
+      }
+    }
+  }
+}

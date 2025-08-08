@@ -1,0 +1,28 @@
+<main class="flex justify-stretch items-center gap-[24px]">
+  <app-card-metric
+    class="flex-grow"
+    [(title)]="title"
+    [(value)]="value"
+    [(percentage)]="percentage"
+    [(percentageText)]="percentageText"
+  >
+  </app-card-metric>
+  <app-card-metric
+    class="flex-grow"
+    [(title)]="title"
+    [(value)]="value"
+    [(percentage)]="percentage"
+    [(percentageText)]="percentageText"
+    [(status)]="StatusMetricEnum.UP"
+  >
+  </app-card-metric>
+  <app-card-metric
+    class="flex-grow"
+    [(title)]="title"
+    [(value)]="value"
+    [(percentage)]="percentage"
+    [(percentageText)]="percentageText"
+    [(status)]="StatusMetricEnum.DOWN"
+  >
+  </app-card-metric>
+</main>

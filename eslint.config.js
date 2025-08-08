@@ -31,6 +31,7 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
+      "prettier/prettier": ["error", { "endOfLine": "lf" }]
     },
   },
   {
@@ -39,6 +40,5 @@ module.exports = tseslint.config(
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
     ],
-    rules: {},
   }
 );

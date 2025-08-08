@@ -1,0 +1,25 @@
+.card-metric {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #00000029;
+}
+
+.card-metric-percentage {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-percentage {
+  font-size: 14px;
+}
+
+
