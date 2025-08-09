@@ -1,0 +1,19 @@
+<section class="chart">
+  <div class="chart-donut-label-container relative">
+    <div echarts [options]="chartOption()" class="chart-donut"></div>
+
+    <div class="chart-container-label">
+      <div class="chart-total-users">
+        <div class="chart-total-users-icon flex items-center justify-center w-[34px] h-[34px] bg-blue-20 rounded-full">
+          <span class="material-icons text-blue">people_outline</span>
+        </div>
+        <div class="chart-total-users">
+          <p class="text-black font-bold text-[34px]">{{ totalUsers() | number:'1.0-0' }}</p>
+        </div>
+        <div class="chart-total-users-text">
+          <p class="text-black-60 font-normal text-sm">Total Users</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
