@@ -1,4 +1,4 @@
-<div class="sidebar" [class.expanded]="isExpanded()">
+<div class="sidebar bg-white dark:bg-blue-dark transition-colors duration-200" [class.expanded]="isExpanded()">
   <header class="container-header-body">
     <!-- Logo y botón de expandir -->
     <div class="sidebar-header" [class.sidebar-header-expanded]="isExpanded()">
@@ -24,7 +24,7 @@
       </div>
 
       <div class="expand-btn" (click)="toggleSidebar()" tabindex="0" role="button" aria-label="Toggle sidebar">
-        <span class="material-icons">
+        <span class="material-icons text-black-60 dark:text-white-16">
           {{ isExpanded() ? 'arrow_back' : 'arrow_forward' }}
         </span>
       </div>
@@ -35,7 +35,7 @@
       <ul class="nav-list" [class.nav-list-expanded]="!isExpanded()">
         <li class="nav-item" [class.active]="activeItem() === 'dashboard'">
           <a href="#" class="nav-link" (click)="activeItem.set('dashboard')">
-            <span class="material-icons">dashboard</span>
+            <span class="material-icons text-black-60 dark:text-white">dashboard</span>
             @if (isExpanded()) {
               <span class="nav-text">Dashboard</span>
             }
@@ -43,7 +43,7 @@
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'payments'">
           <a href="#" class="nav-link" (click)="activeItem.set('payments')">
-            <span class="material-icons">credit_card</span>
+            <span class="material-icons text-black-60 dark:text-white">credit_card</span>
             @if (isExpanded()) {
               <span class="nav-text">Payment</span>
             }
@@ -51,7 +51,7 @@
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'customers'">
           <a href="#" class="nav-link" (click)="activeItem.set('customers')">
-            <span class="material-icons">group</span>
+            <span class="material-icons text-black-60 dark:text-white">group</span>
             @if (isExpanded()) {
               <span class="nav-text">Customers</span>
             }
@@ -59,7 +59,7 @@
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'messages'">
           <a href="#" class="nav-link" (click)="activeItem.set('messages')">
-            <span class="material-icons">chat_bubble_outline</span>
+            <span class="material-icons text-black-60 dark:text-white">chat_bubble_outline</span>
             @if (isExpanded()) {
               <span class="nav-text">Messages</span>
             }
@@ -71,12 +71,11 @@
     <!-- Separador -->
     <div class="nav-separator"></div>
 
-    <!-- Segunda sección de navegación -->
     <nav class="sidebar-nav">
       <ul class="nav-list" [class.nav-list-expanded]="!isExpanded()">
         <li class="nav-item" [class.active]="activeItem() === 'products'">
           <a href="#" class="nav-link" (click)="activeItem.set('products')">
-            <span class="material-icons">shopping_bag</span>
+            <span class="material-icons text-black-60 dark:text-white">shopping_bag</span>
             @if (isExpanded()) {
               <span class="nav-text">Product</span>
             }
@@ -84,7 +83,7 @@
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'invoices'">
           <a href="#" class="nav-link" (click)="activeItem.set('invoices')">
-            <span class="material-icons">receipt</span>
+            <span class="material-icons text-black-60 dark:text-white">receipt</span>
             @if (isExpanded()) {
               <span class="nav-text">Invoice</span>
             }
@@ -92,7 +91,7 @@
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'analytics'">
           <a href="#" class="nav-link" (click)="activeItem.set('analytics')">
-            <span class="material-icons">trending_up</span>
+            <span class="material-icons text-black-60 dark:text-white">trending_up</span>
             @if (isExpanded()) {
               <span class="nav-text">Analytics</span>
             }
@@ -101,15 +100,13 @@
       </ul>
     </nav>
 
-    <!-- Separador -->
-      <div class="nav-separator"></div>
+    <div class="nav-separator"></div>
 
-    <!-- Navegación secundaria -->
     <nav class="sidebar-nav">
       <ul class="nav-list" [class.nav-list-expanded]="!isExpanded()">
         <li class="nav-item" [class.active]="activeItem() === 'settings'">
           <a href="#" class="nav-link" (click)="activeItem.set('settings')">
-            <span class="material-icons">settings</span>
+            <span class="material-icons text-black-60 dark:text-white">settings</span>
             @if (isExpanded()) {
               <span class="nav-text">Settings</span>
             }
@@ -117,7 +114,7 @@
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'security'">
           <a href="#" class="nav-link" (click)="activeItem.set('security')">
-            <span class="material-icons">security</span>
+            <span class="material-icons text-black-60 dark:text-white">security</span>
             @if (isExpanded()) {
               <span class="nav-text">Security</span>
             }
@@ -125,7 +122,7 @@
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'help'">
           <a href="#" class="nav-link" (click)="activeItem.set('help')">
-            <span class="material-icons">help_outline</span>
+            <span class="material-icons text-black-60 dark:text-white">help_outline</span>
             @if (isExpanded()) {
               <span class="nav-text">Help</span>
             }
@@ -142,7 +139,7 @@
       <ul class="nav-list" [class.nav-list-expanded]="!isExpanded()">
         <li class="nav-item" [class.active]="activeItem() === 'logout'">
           <a href="#" class="nav-link" (click)="activeItem.set('logout')">
-            <span class="material-icons">logout</span>
+            <span class="material-icons text-black-60 dark:text-white">logout</span>
             @if (isExpanded()) {
               <span class="nav-text">Log Out</span>
             }
@@ -153,6 +150,8 @@
 
 
   </header>
+
+  <!-- Botón light/dark -->
 
   <div class="container-footer">
     <div class="theme-toggle">

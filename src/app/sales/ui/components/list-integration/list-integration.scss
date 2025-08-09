@@ -1,1 +1,111 @@
 @use '../../../../shared/styles/card.scss';
+
+.list-table{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.list-header-table {
+  display: grid;
+  grid-template-columns: 40px minmax(0,1fr) 160px 200px 160px;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  // Responsive design for tablets and mobile
+  @media (max-width: 1024px) {
+    grid-template-columns: 40px minmax(0,1fr) 120px 150px 120px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 40px minmax(0,1fr) 100px 120px 100px;
+    font-size: 0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  @media (max-width: 640px) {
+    display: none; // Hide header on mobile, will show labels inline
+  }
+}
+
+.list-row-table {
+  display: grid;
+  grid-template-columns: 40px minmax(0,1fr) 160px 200px 160px;
+  align-items: center;
+
+  // Responsive design for tablets and mobile
+  @media (max-width: 1024px) {
+    grid-template-columns: 40px minmax(0,1fr) 120px 150px 120px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 40px minmax(0,1fr) 100px 120px 100px;
+    font-size: 0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  @media (max-width: 640px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+
+    // Mobile layout with labels
+    > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      &:first-child {
+        // Checkbox stays at top
+        justify-content: flex-start;
+        margin-bottom: 0.5rem;
+      }
+
+      &:nth-child(2) {
+        // Application name
+        &::before {
+          content: "Application: ";
+          font-weight: 500;
+          color: #6b7280;
+        }
+      }
+
+      &:nth-child(3) {
+        // Type
+        &::before {
+          content: "Type: ";
+          font-weight: 500;
+          color: #6b7280;
+        }
+      }
+
+      &:nth-child(4) {
+        // Rate
+        &::before {
+          content: "Rate: ";
+          font-weight: 500;
+          color: #6b7280;
+        }
+      }
+
+      &:nth-child(5) {
+        // Profit
+        &::before {
+          content: "Profit: ";
+          font-weight: 500;
+          color: #6b7280;
+        }
+      }
+    }
+  }
+}

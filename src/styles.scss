@@ -25,7 +25,7 @@
 
   --color-white-60: #f7f7ff;
   --color-white-20: #edeeff;
-  --color-white-16: #f7f7ff;
+  --color-white-16: #FFFFFF29;
   --color-white-8: #edeeff;
 
   --color-yellow: #ffd74b;
@@ -38,9 +38,10 @@
   --color-green-dark: #2cc483;
 
   --color-blue-light: #4b4bff;
-  --color-blue-dark: #0000ff;
+  --color-blue-dark: #1F214A;
+  --color-blue-4: #696FFB0A;
 
-  --color-black-60: #5e5e66;
+  --color-black-60: #00000099;
   --color-black-16: #c5c5d6;
   --color-black-4: #e5e6ff;
 
@@ -50,7 +51,7 @@
   --color-blue-32: #c1c3fe;
   --color-blue-20: #d0d2fe;
   --color-blue-12: #dbdcff;
-  --color-blue-8: #e0e1ff;
+  --color-blue-8: #696FFB14;
 
   --font-weight-black: 900;
 
@@ -72,6 +73,7 @@ body {
   box-sizing: border-box;
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 html {

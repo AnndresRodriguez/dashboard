@@ -6,13 +6,17 @@
   gap: 24px;
 }
 
+.container-card-metric {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  gap: 24px;
+}
+
 .container-sales-overview-region {
   width: 100%;
   display: flex;
   gap: 24px;
-  // justify-content: stretch;
-  // flex-direction: row;
-  // gap: 24px;
 
 }
 
@@ -31,10 +35,39 @@
 
 }
 
-// .registered-users {
-//   width: 30%;
-// }
-
 .list-integration {
   flex-grow: 1;
+}
+
+// Media Queries
+// ==========================================
+
+// Tablet (768px y menos)
+@media (max-width: 768px) {
+
+  .container-card-metric {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .container-sales-overview-region{
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sales-overview-region,
+  .sales-by-region {
+    width: 100%;
+  }
+
+  .container-users-table {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .registered-users,
+  .list-integration {
+    width: 100%;
+  }
 }

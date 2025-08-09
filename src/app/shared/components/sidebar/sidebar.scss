@@ -6,7 +6,6 @@
 .sidebar {
   width: 4rem;
   height: 96vh;
-  background-color: #ffffff;
   border-right: 1px solid #e5e6ff;
   display: flex;
   flex-direction: column;
@@ -66,7 +65,7 @@
 
   .material-icons {
     font-size: 16px;
-    color: #5e5e66;
+    // color: #5e5e66;
     transition: transform 0.3s ease;
 
     &.rotated {
