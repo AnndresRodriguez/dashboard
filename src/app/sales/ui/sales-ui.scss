@@ -1,0 +1,40 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 24px;
+}
+
+.container-sales-overview-region {
+  width: 100%;
+  display: flex;
+  gap: 24px;
+  // justify-content: stretch;
+  // flex-direction: row;
+  // gap: 24px;
+
+}
+
+.sales-overview-region {
+  width: 70%;
+}
+
+.sales-by-region {
+  width: 30%;
+}
+
+.container-users-table {
+  width: 100%;
+  display: flex;
+  gap: 24px;
+
+}
+
+// .registered-users {
+//   width: 30%;
+// }
+
+.list-integration {
+  flex-grow: 1;
+}

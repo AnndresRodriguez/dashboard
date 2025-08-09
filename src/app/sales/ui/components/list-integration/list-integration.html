@@ -1,0 +1,202 @@
+<div class="card">
+  <div
+    class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <h2 class="text-lg font-semibold text-gray-800">List of Integration</h2>
+  </div>
+
+  <div class="mt-4 overflow-hidden rounded-xl border border-gray-200">
+    <!-- Header -->
+    <div
+      class="grid grid-cols-[40px_minmax(0,1fr)_160px_200px_160px] items-center bg-gray-50 px-4 py-3 text-sm font-medium text-gray-600"
+    >
+      <div class="flex items-center">
+        <input
+          type="checkbox"
+          class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500"
+          [checked]="allChecked()"
+          [indeterminate]="someChecked()"
+          (change)="toggleAll($any($event.target).checked)"
+        />
+      </div>
+
+      <button
+        class="flex items-center gap-1 text-left hover:text-gray-900"
+        (click)="sortBy('name')"
+        title="Sort by Application"
+      >
+        Application
+        @if (isSorted('name')) {
+          <svg
+            class="h-4 w-4"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            @if (isSorted('name') === 'asc') {
+              <path d="M5 12l5-5 5 5" />
+            }
+            @if (isSorted('name') === 'desc') {
+              <path d="M5 8l5 5 5-5" />
+            }
+          </svg>
+        }
+      </button>
+
+      <button
+        class="flex items-center gap-1 hover:text-gray-900"
+        (click)="sortBy('type')"
+        title="Sort by Type"
+      >
+        Type
+        @if (isSorted('type')) {
+          <svg
+            class="h-4 w-4"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            @if (isSorted('type') === 'asc') {
+              <path d="M5 12l5-5 5 5" />
+            }
+            @if (isSorted('type') === 'desc') {
+              <path d="M5 8l5 5 5-5" />
+            }
+          </svg>
+        }
+      </button>
+
+      <button
+        class="flex items-center gap-1 hover:text-gray-900"
+        (click)="sortBy('ratePct')"
+        title="Sort by Rate"
+      >
+        Rate
+        @if (isSorted('ratePct')) {
+          <svg
+            class="h-4 w-4"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            @if (isSorted('ratePct') === 'asc') {
+              <path d="M5 12l5-5 5 5" />
+            }
+            @if (isSorted('ratePct') === 'desc') {
+              <path d="M5 8l5 5 5-5" />
+            }
+          </svg>
+        }
+      </button>
+
+      <button
+        class="ml-auto flex items-center gap-1 hover:text-gray-900 justify-self-end"
+        (click)="sortBy('profitUsd')"
+        title="Sort by Profit"
+      >
+        Profit
+        @if (isSorted('profitUsd')) {
+          <svg
+            class="h-4 w-4"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            @if (isSorted('profitUsd') === 'asc') {
+              <path d="M5 12l5-5 5 5" />
+            }
+            @if (isSorted('profitUsd') === 'desc') {
+              <path d="M5 8l5 5 5-5" />
+            }
+          </svg>
+        }
+      </button>
+    </div>
+
+    <!-- Rows -->
+    @for (row of pagedRows(); track row.id; let last = $last) {
+    <div
+      class="grid grid-cols-[40px_minmax(0,1fr)_160px_200px_160px] items-center px-4 py-4 text-sm"
+      [class.border-b]="!$last"
+      [class.border-gray-100]="!$last"
+    >
+      <!-- Checkbox -->
+      <div class="flex items-center">
+        <input
+          type="checkbox"
+          class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500"
+          [checked]="row.selected"
+          (change)="row.selected = $any($event.target).checked"
+        />
+      </div>
+
+      <!-- App + logo SVG oficial -->
+      <div class="flex items-center gap-3 min-w-0">
+        <div
+          class="h-7 w-7 shrink-0 rounded-md flex items-center justify-center"
+        >
+          <!-- Logos vectoriales minimal -->
+          @switch (row.name) {
+            @case ('Stripe') {
+              <svg
+                viewBox="0 0 48 48"
+                class="h-7 w-7"
+                aria-hidden="true"
+              >
+                <path
+                  d="M40 16.5c0-6.5-3.9-9.4-9.6-9.4-3.9 0-6.3 2-7.4 3.5V7H17v34l6-1.2V27.3c1.1.8 2.8 1.7 5.1 1.7 5.7 0 11.9-3.5 11.9-12.5Zm-6.6.4c0 3.9-2.7 5.9-5.8 5.9-2.2 0-3.6-.8-4.2-1.5v-9c.9-1 2.3-1.9 4.3-1.9 3.1 0 5.7 2 5.7 6.5Z"
+                  fill="#635BFF"
+                />
+              </svg>
+            }
+            @case ('Zapier') {
+              <svg
+                viewBox="0 0 48 48"
+                class="h-7 w-7"
+                aria-hidden="true"
+              >
+                <path
+                  d="M24 6l2.2 7.2 6.6-4.8-3.2 6.8 7.4.8-7.4.8 3.2 6.8-6.6-4.8L24 36l-2.2-7.2-6.6 4.8 3.2-6.8-7.4-.8 7.4-.8-3.2-6.8 6.6 4.8L24 6z"
+                  fill="#FF4F00"
+                />
+              </svg>
+            }
+            @case ('Shopify') {
+              <svg
+                viewBox="0 0 48 48"
+                class="h-7 w-7"
+                aria-hidden="true"
+              >
+                <path
+                  d="M36.7 10.6 28.9 8l-9.1 3.3L16 40l16.8 3.5L36.7 10.6z"
+                  fill="#95BF47"
+                />
+                <path
+                  d="M28.9 8 24 20.6s2.2-1.2 4.2-.5c2 0 2.8 1.7 2.6 3-.3 1.9-2.3 3-4.1 2.7-1.1-.1-1.6-.6-1.6-.6l-1.5 4.6s1 .8 2.8 1c3.9.5 7.6-1.9 8.2-5.8.6-3.8-1.9-7.1-5.5-7.5-.8-.1-1.6 0-2.1.1L30 8.6l-1.1-.6z"
+                  fill="#5E8E3E"
+                />
+              </svg>
+            }
+          }
+        </div>
+        <span class="truncate font-medium text-gray-800">{{ row.name }}</span>
+      </div>
+
+      <!-- Type -->
+      <div class="text-gray-600">{{ row.type }}</div>
+
+      <!-- Rate -->
+      <div class="flex items-center gap-3">
+        <div class="h-2 w-40 rounded-full bg-gray-200">
+          <div
+            class="h-2 rounded-full bg-indigo-600"
+            [style.width.%]="row.ratePct"
+          ></div>
+        </div>
+        <span class="text-gray-600">{{ row.ratePct }}%</span>
+      </div>
+
+      <!-- Profit -->
+      <div class="text-right font-medium text-gray-800">
+        {{ row.profitUsd | currency: "USD" : "symbol" : "1.0-2" }}
+      </div>
+    </div>
+    }
+  </div>
+</div>

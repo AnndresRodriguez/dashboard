@@ -1,28 +1,58 @@
-<main class="flex justify-stretch items-center gap-[24px]">
-  <app-card-metric
-    class="flex-grow"
-    [(title)]="title"
-    [(value)]="value"
-    [(percentage)]="percentage"
-    [(percentageText)]="percentageText"
-  >
-  </app-card-metric>
-  <app-card-metric
-    class="flex-grow"
-    [(title)]="title"
-    [(value)]="value"
-    [(percentage)]="percentage"
-    [(percentageText)]="percentageText"
-    [(status)]="StatusMetricEnum.UP"
-  >
-  </app-card-metric>
-  <app-card-metric
-    class="flex-grow"
-    [(title)]="title"
-    [(value)]="value"
-    [(percentage)]="percentage"
-    [(percentageText)]="percentageText"
-    [(status)]="StatusMetricEnum.DOWN"
-  >
-  </app-card-metric>
-</main>
+<section class="main-container">
+  <main class="flex justify-stretch items-center gap-[24px]">
+    <app-card-metric
+      class="flex-grow"
+      [title]="title"
+      [value]="value"
+      [percentage]="percentage"
+      [percentageText]="percentageText"
+    >
+    </app-card-metric>
+    <app-card-metric
+      class="flex-grow"
+      [title]="title"
+      [value]="value"
+      [percentage]="percentage"
+      [percentageText]="percentageText"
+      [status]="StatusMetricEnum.UP"
+    >
+    </app-card-metric>
+    <app-card-metric
+      class="flex-grow"
+      [title]="title"
+      [value]="value"
+      [percentage]="percentage"
+      [percentageText]="percentageText"
+      [status]="StatusMetricEnum.DOWN"
+    >
+    </app-card-metric>
+    <app-card-metric
+      class="flex-grow"
+      [title]="title"
+      [value]="value"
+      [percentage]="percentage"
+      [percentageText]="percentageText"
+      [status]="StatusMetricEnum.UP"
+    >
+    </app-card-metric>
+  </main>
+
+  <main class="container-sales-overview-region">
+    <div class="sales-overview-region">
+      <app-sales-overview></app-sales-overview>
+    </div>
+    <div class="sales-by-region">
+      <app-sales-by-region></app-sales-by-region>
+    </div>
+  </main>
+
+  <main class="container-users-table">
+    <div class="registered-users">
+      <app-registered-users></app-registered-users>
+    </div>
+    <div class="list-integration">
+      <app-list-integration></app-list-integration>
+    </div>
+  </main>
+
+</section>

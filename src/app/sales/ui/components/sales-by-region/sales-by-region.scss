@@ -1,0 +1,13 @@
+@use '../../../../shared/styles/card.scss';
+
+.card-sales-by-region {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sales-by-region-chart {
+  width: 100%;
+  height: 275px;
+}
