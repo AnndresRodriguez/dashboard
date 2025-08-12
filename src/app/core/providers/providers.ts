@@ -9,9 +9,9 @@ import {
 
 import { routes } from '../../app.routes';
 import { environment } from '../../../environments/environment';
-import { StatsPort } from '../../sales/domain/ports/stats.port';
-import { GetStatsUseCase } from '../../sales/application/use-case/get-stats.usecase';
-import { SalesAdapter } from '../../sales/infraestructure/adapters/sales.adapter';
+import { SalesMetricsPort } from '../../dashboard/domain/ports/sales-metrics.port';
+import { GetStatsUseCase } from '../../dashboard/application/use-case/get-stats.usecase';
+import { SalesMetricsAdapter } from '../../dashboard/infraestructure/adapters/sales-metric.adapter';
 
 // ============================================================================
 // INJECTION TOKENS
@@ -60,13 +60,13 @@ export const applicationProviders = [
 
 export const domainProviders = [
   {
-    provide: StatsPort,
-    useClass: SalesAdapter,
+    provide: SalesMetricsPort,
+    useClass: SalesMetricsAdapter,
   },
   {
     provide: GetStatsUseCase,
     useFactory: () => new GetStatsUseCase(),
-    deps: [StatsPort],
+    deps: [SalesMetricsPort],
   },
 ];
 

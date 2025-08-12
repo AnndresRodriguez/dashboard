@@ -1,4 +1,4 @@
-export interface StatsResponse {
+export interface SalesMetricResponse {
   title: string;
   value: number;
   currency: string;

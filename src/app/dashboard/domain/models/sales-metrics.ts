@@ -1,6 +1,6 @@
-import { StatsResponse } from '../interfaces/stats.interface';
+import { SalesMetricResponse } from '../interfaces/sales-metric.interface';
 
-export class Stats {
+export class SaleMetric {
   constructor(
     public title: string,
     public value: number,
@@ -60,8 +60,8 @@ export class Stats {
     this.description = description;
   }
 
-  static fromApiResponse(response: StatsResponse): Stats {
-    return new Stats(
+  static fromApiResponse(response: SalesMetricResponse): SaleMetric {
+    return new SaleMetric(
       response.title,
       response.value,
       response.currency,

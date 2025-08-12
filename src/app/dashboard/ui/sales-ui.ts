@@ -5,7 +5,7 @@ import { SalesByRegion } from './components/sales-by-region/sales-by-region';
 import { RegisteredUsers } from './components/registered-users/registered-users';
 import { ListIntegration } from './components/list-integration/list-integration';
 import { GetStatsUseCase } from '../application/use-case/get-stats.usecase';
-import { StatsResponse } from '../domain/interfaces/stats.interface';
+import { SalesMetricResponse } from '../domain/interfaces/sales-metric.interface';
 
 @Component({
   selector: 'app-sales-ui',
@@ -21,7 +21,7 @@ import { StatsResponse } from '../domain/interfaces/stats.interface';
 })
 export class SalesUi implements AfterViewInit {
   private readonly getStatsUseCase = inject(GetStatsUseCase);
-  protected readonly stats = signal<StatsResponse[]>([]);
+  protected readonly stats = signal<SalesMetricResponse[]>([]);
 
   ngAfterViewInit(): void {
     this.getStatsUseCase.execute().subscribe({
