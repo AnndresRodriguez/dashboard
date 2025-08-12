@@ -1,5 +1,3 @@
-import { IntegrationApiResponse } from '../interfaces/integration.interface';
-
 export class Integration {
   constructor(
     public id: string,
@@ -10,33 +8,6 @@ export class Integration {
     public profit: number,
     public isSelected = false,
   ) {}
-
-  static fromApiResponse(response: IntegrationApiResponse): Integration[] {
-    return response.data.integrations.map(
-      (integration) =>
-        new Integration(
-          integration.id,
-          integration.application,
-          integration.logo,
-          integration.type,
-          integration.rate,
-          integration.profit,
-          integration.isSelected || false,
-        ),
-    );
-  }
-
-  static fromIntegration(integration: Integration): Integration {
-    return new Integration(
-      integration.id,
-      integration.application,
-      integration.logo,
-      integration.type,
-      integration.rate,
-      integration.profit,
-      integration.isSelected || false,
-    );
-  }
 
   get formattedProfit(): string {
     return new Intl.NumberFormat('en-US', {

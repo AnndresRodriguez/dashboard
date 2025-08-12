@@ -1,61 +1,49 @@
-import { CurrencyPipe } from '@angular/common';
-import { Component, signal, computed } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
+import { Component, signal, computed, inject, OnInit } from '@angular/core';
+import { GetIntegrationsUseCase } from '../../../application/use-case/get-integrations.usecase';
+import { Integration } from '../../../domain/models/integration';
 
-interface Integration {
-  id: number;
-  name: 'Stripe' | 'Zapier' | 'Shopify';
-  type: 'Finance' | 'CRM' | 'Marketplace';
-  ratePct: number;
-  profitUsd: number;
-  selected?: boolean;
-}
-
-type SortKey = 'name' | 'type' | 'ratePct' | 'profitUsd';
+type SortKey = 'application' | 'type' | 'rate' | 'profit';
 type SortDir = 'asc' | 'desc';
 
 @Component({
   selector: 'app-list-integration',
-  imports: [CurrencyPipe, FormsModule],
+  imports: [CurrencyPipe, NgOptimizedImage],
   templateUrl: './list-integration.html',
   styleUrl: './list-integration.scss',
 })
-export class ListIntegration {
-  rows = signal<Integration[]>([
-    {
-      id: 1,
-      name: 'Stripe',
-      type: 'Finance',
-      ratePct: 33,
-      profitUsd: 10998.28,
-    },
-    { id: 2, name: 'Zapier', type: 'CRM', ratePct: 27, profitUsd: 8998.59 },
-    {
-      id: 3,
-      name: 'Shopify',
-      type: 'Marketplace',
-      ratePct: 40,
-      profitUsd: 13331.24,
-    },
-  ]);
+export class ListIntegration implements OnInit {
+  private readonly getIntegrationsUseCase = inject(GetIntegrationsUseCase);
 
+  rows = signal<Integration[]>([]);
+
+  ngOnInit() {
+    this.getIntegrationsUseCase.execute().subscribe((integrations) => {
+      this.rows.set(integrations);
+    });
+  }
   // ---- Selección
   allChecked = computed(() => {
     const rows = this.rows();
-    return rows.length > 0 && rows.every((r) => r.selected);
+    return rows.length > 0 && rows.every((r) => r.isSelected);
   });
 
   someChecked = computed(() => {
     const rows = this.rows();
-    return !this.allChecked() && rows.some((r) => r.selected);
+    return !this.allChecked() && rows.some((r) => r.isSelected);
   });
 
   toggleAll(checked: boolean) {
-    this.rows.update((rows) => rows.map((r) => ({ ...r, selected: checked })));
+    this.rows.update((rows) =>
+      rows.map((r) => {
+        r.setSelected(checked);
+        return r;
+      }),
+    );
   }
 
   // ---- Ordenamiento
-  sortKey = signal<SortKey>('name');
+  sortKey = signal<SortKey>('application');
   sortDir = signal<SortDir>('asc');
 
   sortBy(key: SortKey) {

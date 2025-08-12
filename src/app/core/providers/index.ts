@@ -5,3 +5,4 @@
 // para facilitar las importaciones en otros módulos
 
 export * from './providers';
+export * from './domain-providers';

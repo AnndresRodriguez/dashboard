@@ -4,21 +4,24 @@
   </div>
   <div class="registered-users-chart">
     <div class="registered-users-chart-donut">
-      <app-donut-chart />
+      <app-donut-chart
+        [leftLabel]="'Premium Users'"
+        [valueLeft]="registeredUsers().premium"
+        [rightLabel]="'Basic Users'"
+        [valueRight]="registeredUsers().basic"
+      />
     </div>
     <div class="flex w-full justify-between">
       <div class="flex items-center gap-2">
         <div class="w-[4px] h-[30px] bg-blue rounded-sm"></div>
         <div class="flex flex-col gap-2">
-          <!-- <p class="text-black font-bold text-sm">{{ totalUsers() | number:'1.0-0' }}</p> -->
-          <p class="text-black dark:text-white font-bold text-sm">2,804</p>
+          <p class="text-black font-bold text-sm">{{ registeredUsers().premium | number:'1.0-0' }}</p>
           <p class="text-black-60 dark:text-white/60 font-normal text-sm">Premium Users</p>
         </div>
       </div>
       <div class="flex items-center gap-2">
         <div class="flex flex-col items-end gap-2">
-          <!-- <p class="text-black font-bold text-sm">{{ totalUsers() | number:'1.0-0' }}</p> -->
-          <p class="text-black dark:text-white font-bold text-sm">397</p>
+          <p class="text-black font-bold text-sm">{{ registeredUsers().basic | number:'1.0-0' }}</p>
           <p class="text-black-60 dark:text-white/60 font-normal text-sm">Basic Users</p>
         </div>
         <div class="w-[4px] h-[30px] bg-blue-20 rounded-sm"></div>

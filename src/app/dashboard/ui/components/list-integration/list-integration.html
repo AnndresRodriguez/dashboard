@@ -21,20 +21,20 @@
 
       <button
         class="flex items-center gap-1 text-left font-normal text-sm hover:text-gray-900 cursor-pointer"
-        (click)="sortBy('name')"
+        (click)="sortBy('application')"
         title="Sort by Application"
       >
         Application
-        @if (isSorted('name')) {
+        @if (isSorted('application')) {
           <svg
             class="h-4 w-4"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
-            @if (isSorted('name') === 'asc') {
+            @if (isSorted('application') === 'asc') {
               <path d="M5 12l5-5 5 5" />
             }
-            @if (isSorted('name') === 'desc') {
+            @if (isSorted('application') === 'desc') {
               <path d="M5 8l5 5 5-5" />
             }
           </svg>
@@ -65,20 +65,20 @@
 
       <button
         class="flex items-center gap-1 hover:text-gray-900 cursor-pointer text-sm font-normal"
-        (click)="sortBy('ratePct')"
+        (click)="sortBy('rate')"
         title="Sort by Rate"
       >
         Rate
-        @if (isSorted('ratePct')) {
+        @if (isSorted('rate')) {
           <svg
             class="h-4 w-4"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
-            @if (isSorted('ratePct') === 'asc') {
+            @if (isSorted('rate') === 'asc') {
               <path d="M5 12l5-5 5 5" />
             }
-            @if (isSorted('ratePct') === 'desc') {
+            @if (isSorted('rate') === 'desc') {
               <path d="M5 8l5 5 5-5" />
             }
           </svg>
@@ -87,20 +87,20 @@
 
       <button
         class="flex items-center justify-end gap-1 hover:text-gray-900 cursor-pointer text-sm font-normal"
-        (click)="sortBy('profitUsd')"
+        (click)="sortBy('profit')"
         title="Sort by Profit"
       >
         Profit
-        @if (isSorted('profitUsd')) {
+        @if (isSorted('profit')) {
           <svg
             class="h-4 w-4"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
-            @if (isSorted('profitUsd') === 'asc') {
+            @if (isSorted('profit') === 'asc') {
               <path d="M5 12l5-5 5 5" />
             }
-            @if (isSorted('profitUsd') === 'desc') {
+            @if (isSorted('profit') === 'desc') {
               <path d="M5 8l5 5 5-5" />
             }
           </svg>
@@ -120,63 +120,24 @@
         <input
           type="checkbox"
           class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500"
-          [checked]="row.selected"
-          (change)="row.selected = $any($event.target).checked"
+          [checked]="row.isSelected"
+          (change)="row.isSelected = $any($event.target).checked"
         />
       </div>
 
       <!-- App + logo SVG oficial -->
       <div class="flex items-center gap-3 min-w-0">
         <div
-          class="h-7 w-7 shrink-0 rounded-md flex items-center justify-center"
+          class="relative w-7 h-7 object-cover"
         >
-          <!-- Logos vectoriales minimal -->
-          @switch (row.name) {
-            @case ('Stripe') {
-              <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="0.5" y="1" width="27" height="27" rx="1.5" stroke="white" stroke-opacity="0.16"/>
-                <g clip-path="url(#clip0_13_257)">
-                <path d="M6.5 4.5C5.83696 4.5 5.20107 4.76339 4.73223 5.23223C4.26339 5.70107 4 6.33696 4 7L4 22C4 22.663 4.26339 23.2989 4.73223 23.7678C5.20107 24.2366 5.83696 24.5 6.5 24.5H21.5C22.163 24.5 22.7989 24.2366 23.2678 23.7678C23.7366 23.2989 24 22.663 24 22V7C24 6.33696 23.7366 5.70107 23.2678 5.23223C22.7989 4.76339 22.163 4.5 21.5 4.5H6.5ZM14.2825 11.2313C13.5525 11.2313 13.1112 11.4362 13.1112 11.9725C13.1112 12.5575 13.87 12.815 14.8112 13.135C16.3462 13.6537 18.3663 14.3387 18.375 16.8762C18.375 19.335 16.405 20.75 13.5375 20.75C12.2439 20.7446 10.9647 20.4784 9.77625 19.9675V16.6975C10.9337 17.33 12.395 17.7975 13.5387 17.7975C14.31 17.7975 14.8612 17.5913 14.8612 16.9587C14.8612 16.3112 14.0387 16.015 13.045 15.6575C11.5325 15.1125 9.625 14.425 9.625 12.1375C9.625 9.70625 11.485 8.25 14.2825 8.25C15.4516 8.23954 16.6118 8.45384 17.7 8.88125V12.11C16.6525 11.5475 15.33 11.2313 14.2825 11.2313Z" fill="#696FFB"/>
-                </g>
-                <defs>
-                <clipPath id="clip0_13_257">
-                <rect width="20" height="20" fill="white" transform="translate(4 4.5)"/>
-                </clipPath>
-                </defs>
-                </svg>
-
-            }
-            @case ('Zapier') {
-              <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="0.5" y="1" width="26.9994" height="27" rx="1.5" stroke="white" stroke-opacity="0.16"/>
-                <path d="M16.5 14.5031C16.5004 15.2247 16.3702 15.9404 16.1156 16.6156C15.4404 16.8703 14.7247 17.0005 14.0031 17H13.9962C13.2747 17.0004 12.5589 16.8702 11.8837 16.6156C11.6294 15.9404 11.4992 15.2247 11.4994 14.5031V14.4963C11.4994 13.7513 11.6362 13.0413 11.8837 12.3837C12.5589 12.1292 13.2747 11.9989 13.9962 11.9994H14.0031C14.7481 11.9994 15.4612 12.1363 16.1156 12.3837C16.3702 13.0589 16.5004 13.7747 16.5 14.4963V14.5031ZM23.8631 12.8331H18.0231L22.1475 8.70563C21.8246 8.25105 21.4642 7.82435 21.07 7.43C20.6758 7.03468 20.2491 6.6732 19.7944 6.34938L15.6669 10.4737V4.63688C15.1169 4.54787 14.5608 4.50211 14.0037 4.5H13.9937C13.4269 4.5 12.8737 4.55187 12.3337 4.63688V10.4769L8.20937 6.3525C7.75138 6.67246 7.32319 7.03309 6.93 7.43C6.53363 7.8232 6.17207 8.25001 5.84937 8.70563L9.97375 12.8331H4.13687C4.13687 12.8331 4 13.93 4 14.4963V14.5031C4 15.07 4.05187 15.6263 4.13687 16.1663H9.97687L5.8525 20.2906C6.49741 21.205 7.29313 22.003 8.20562 22.6506L12.3331 18.5262V24.3631C12.8731 24.4506 13.4262 24.5 13.9931 24.5H14.0062C14.5731 24.5 15.1262 24.4506 15.6662 24.3631V18.5262L19.7906 22.6506C20.25 22.3381 20.6762 21.9738 21.0662 21.5763H21.0694C21.4675 21.1847 21.8292 20.7577 22.15 20.3006L18.0256 16.1762H23.8625C23.95 15.6387 23.9994 15.0887 23.9994 14.5256V14.5C23.9994 13.9331 23.95 13.38 23.8625 12.8431L23.8631 12.8331Z" fill="#FF3200"/>
-                </svg>
-
-            }
-            @case ('Shopify') {
-              <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="0.5" y="1" width="27" height="27" rx="1.5" stroke="white" stroke-opacity="0.16"/>
-                <g clip-path="url(#clip0_13_269)">
-                <g clip-path="url(#clip1_13_269)">
-                <path d="M20.5599 8.42739C20.5461 8.32739 20.4585 8.27204 20.3861 8.26595C19.8523 8.22583 19.3184 8.18604 18.7845 8.14656C18.7845 8.14656 17.7224 7.09211 17.6058 6.9754C17.4892 6.85876 17.2614 6.89424 17.1729 6.92026C17.1599 6.9241 16.9409 6.9917 16.5786 7.10382C16.2238 6.08287 15.5976 5.14465 14.496 5.14465C14.4656 5.14465 14.4343 5.14588 14.403 5.14766C14.0897 4.73334 13.7016 4.55334 13.3664 4.55334C10.8003 4.55334 9.57439 7.76122 9.19 9.39136C8.19288 9.70033 7.48452 9.91999 7.39404 9.94841C6.83747 10.123 6.81986 10.1405 6.74678 10.665C6.69178 11.062 5.23548 22.3243 5.23548 22.3243L16.5833 24.4505L22.7319 23.1203C22.7319 23.1203 20.5734 8.52739 20.5599 8.42739ZM15.9514 7.2978L14.9912 7.59499C14.9915 7.52732 14.9919 7.46074 14.9919 7.38793C14.9919 6.75341 14.9038 6.24252 14.7625 5.83752C15.3301 5.90876 15.7081 6.55458 15.9514 7.2978ZM14.0584 5.96334C14.2162 6.35876 14.3188 6.92622 14.3188 7.69197C14.3188 7.73115 14.3184 7.76697 14.3181 7.80321C13.6936 7.99663 13.0151 8.20663 12.335 8.41732C12.7169 6.94362 13.4326 6.23184 14.0584 5.96334ZM13.296 5.24163C13.4067 5.24163 13.5183 5.27924 13.6251 5.35273C12.8027 5.73971 11.9212 6.71437 11.5489 8.66074L9.98137 9.14622C10.4174 7.66163 11.4528 5.24163 13.296 5.24163Z" fill="#95BF46"/>
-                <path d="M20.3861 8.26597C19.8523 8.22585 19.3184 8.18606 18.7845 8.14658C18.7845 8.14658 17.7224 7.09213 17.6058 6.97542C17.5622 6.932 17.5034 6.90974 17.4419 6.90015L16.5838 24.4504L22.7319 23.1204C22.7319 23.1204 20.5734 8.52741 20.5599 8.42741C20.5461 8.32741 20.4585 8.27206 20.3861 8.26597Z" fill="#5E8E3E"/>
-                <path d="M14.496 11.6633L13.7379 13.9185C13.7379 13.9185 13.0736 13.564 12.2594 13.564C11.0657 13.564 11.0056 14.3131 11.0056 14.5019C11.0056 15.5319 13.6906 15.9266 13.6906 18.3392C13.6906 20.2373 12.4866 21.4596 10.8634 21.4596C8.91541 21.4596 7.91925 20.2472 7.91925 20.2472L8.44083 18.524C8.44083 18.524 9.4648 19.4031 10.3288 19.4031C10.8934 19.4031 11.1231 18.9585 11.1231 18.6337C11.1231 17.2902 8.92035 17.2303 8.92035 15.0225C8.92035 13.1644 10.254 11.3662 12.9462 11.3662C13.9836 11.3662 14.496 11.6633 14.496 11.6633Z" fill="white"/>
-                </g>
-                </g>
-                <defs>
-                <clipPath id="clip0_13_269">
-                <rect width="20" height="20" fill="white" transform="translate(4 4.5)"/>
-                </clipPath>
-                <clipPath id="clip1_13_269">
-                <rect width="17.54" height="20" fill="white" transform="translate(5.23 4.5)"/>
-                </clipPath>
-                </defs>
-                </svg>
-
-            }
-          }
+          <!-- Logos vectoriales optimizados con NgOptimizedImage -->
+          <img
+            ngSrc="{{ row.logo }}"
+            [alt]="row.application"
+            fill
+          />
         </div>
-        <span class="truncate font-medium text-black dark:text-white">{{ row.name }}</span>
+        <span class="truncate font-normal text-black dark:text-white">{{ row.application }}</span>
       </div>
 
       <!-- Type -->
@@ -187,15 +148,15 @@
         <div class="h-2 w-40 rounded-full bg-blue-20">
           <div
             class="h-2 rounded-full bg-blue"
-            [style.width.%]="row.ratePct"
+            [style.width.%]="row.rate"
           ></div>
         </div>
-        <span class="text-black/60 dark:text-white/60">{{ row.ratePct }}%</span>
+        <span class="text-black/60 dark:text-white/60">{{ row.rate }}%</span>
       </div>
 
       <!-- Profit -->
       <div class="text-right font-medium text-black/60 dark:text-white/60">
-        {{ row.profitUsd | currency: "USD" : "symbol" : "1.0-2" }}
+        {{ row.profit | currency: "USD" : "symbol" : "1.0-2" }}
       </div>
     </div>
     }

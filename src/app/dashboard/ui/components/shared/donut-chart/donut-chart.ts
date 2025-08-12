@@ -1,96 +1,88 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, input } from '@angular/core';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { EChartsOption } from 'echarts';
 import { DecimalPipe } from '@angular/common';
+import {
+  createDonutChartConfig,
+  createDonutChartDarkConfig,
+  createDonutChartLightConfig,
+  ValuesDonutChart,
+} from './config/donut-chart.config';
 
 @Component({
   selector: 'app-donut-chart',
+  standalone: true,
   imports: [NgxEchartsModule, DecimalPipe],
   templateUrl: './donut-chart.html',
   styleUrl: './donut-chart.scss',
 })
 export class DonutChart {
-  value = signal(3201);
-  color = signal('#8B5CF6');
+  valueLeft = input<number>(0);
+  valueRight = input<number>(0);
+  chartOption: EChartsOption = createDonutChartConfig();
 
-  premiumUsers = signal(2804);
-  basicUsers = signal(397);
+  leftLabel = input<string>('');
+  rightLabel = input<string>('');
 
-  totalUsers = computed(() => this.premiumUsers() + this.basicUsers());
+  totalUsers = computed(() => this.valueLeft() + this.valueRight());
 
-  // Computed signal para el chart option
-  chartOption = computed<EChartsOption>(() => ({
-    tooltip: {
-      trigger: 'item',
-      formatter: '{a} <br/>{b}: {c} ({d}%)',
-      backgroundColor: '#000000',
-      borderColor: '#000000',
-      textStyle: {
-        color: '#ffffff',
-        fontSize: 12,
-      },
-      extraCssText: 'border-radius: 8px; padding: 8px 12px;',
-      position: 'right',
-    },
-    legend: {
-      show: false,
-    },
-    series: [
-      {
-        name: 'Users',
-        type: 'pie',
-        radius: ['70%', '85%'],
-        center: ['50%', '60%'],
-        startAngle: 180,
-        endAngle: 360,
-        avoidLabelOverlap: false,
-        itemStyle: {
-          borderRadius: 4,
-          borderColor: '#fff',
-          borderWidth: 2,
-        },
-        label: {
-          show: false, // Desactivar labels
-        },
-        emphasis: {
-          label: {
-            show: false, // Desactivar labels en hover también
+  isDarkMode = false;
+
+  constructor() {
+    effect(() => {
+      // Solo actualizar si los valores son mayores a 0
+      if (this.valueLeft() > 0 || this.valueRight() > 0) {
+        this.updateChartData({
+          left: {
+            value: this.valueLeft(),
+            name: this.leftLabel(),
+            color: '#696FFB',
           },
-        },
-        labelLine: {
-          show: false,
-        },
-        data: [
-          {
-            value: this.premiumUsers(),
-            name: 'Premium Users',
-            itemStyle: {
-              color: '#696FFB',
-            },
+          right: {
+            value: this.valueRight(),
+            name: this.rightLabel(),
+            color: '#3a3c8a',
           },
-          {
-            value: this.basicUsers(),
-            name: 'Basic Users',
-            itemStyle: {
-              color: '#696FFB99',
-            },
-          },
-        ],
-      },
-    ],
-  }));
-
-  updateValue(newValue: number): void {
-    this.value.set(newValue);
+        });
+      }
+    });
   }
 
-  updateChart(newValue: number, newColor: string): void {
-    this.value.set(newValue);
-    this.color.set(newColor);
+  updateChartData(data: ValuesDonutChart): void {
+    this.chartOption = this.isDarkMode
+      ? createDonutChartDarkConfig(data)
+      : createDonutChartLightConfig(data);
   }
 
-  updateUsers(premium: number, basic: number): void {
-    this.premiumUsers.set(premium);
-    this.basicUsers.set(basic);
+  changeToDarkMode() {
+    this.isDarkMode = true;
+    this.updateChartData({
+      left: {
+        value: this.valueLeft(),
+        name: this.leftLabel(),
+        color: '#696FFB',
+      },
+      right: {
+        value: this.valueRight(),
+        name: this.rightLabel(),
+        color: '#3a3c8a',
+      },
+    });
+  }
+
+  changeToLightMode() {
+    this.isDarkMode = false;
+    this.updateChartData({
+      left: {
+        value: this.valueLeft(),
+        name: this.leftLabel(),
+        color: '#696FFB',
+      },
+      right: {
+        value: this.valueRight(),
+        name: this.rightLabel(),
+        color: '#3a3c8a',
+      },
+    });
   }
 }

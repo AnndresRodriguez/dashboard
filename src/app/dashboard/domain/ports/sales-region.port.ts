@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { RegionStatsResponse } from '../interfaces/stats-region.interface';
+import { SaleRegion } from '../models/sales-region';
 
 export abstract class SalesRegionPort {
-  abstract getSalesRegion(): Observable<RegionStatsResponse>;
+  abstract getSalesRegion(): Observable<SaleRegion[]>;
 }

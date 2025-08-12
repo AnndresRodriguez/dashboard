@@ -1,10 +1,9 @@
 export interface RegisteredUsersData {
-  totalUsers: number;
-  premiumUsers: number;
-  basicUsers: number;
-  title?: string;
+  total: number;
+  premium: number;
+  basic: number;
 }
 
 export interface RegisteredUsersResponse {
-  registeredUsers: RegisteredUsersData;
+  users: RegisteredUsersData;
 }
