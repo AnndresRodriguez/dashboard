@@ -1,6 +1,7 @@
 
 @use "tailwindcss";
 @import "material-design-icons-iconfont/dist/material-design-icons.css";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-family-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
@@ -23,8 +24,8 @@
   --color-secondary-light: #696ffb;
   --color-secondary-dark: #3a3c8a;
 
-  --color-white-60: #f7f7ff;
   --color-white-20: #edeeff;
+  --color-white-60: #FFFFFF99;
   --color-white-16: #FFFFFF29;
   --color-white-8: #edeeff;
 
@@ -35,11 +36,10 @@
   --color-red-dark: #ff5e75;
 
   --color-green-light: #b8e8d4;
-  --color-green-dark: #2cc483;
+  --color-green-dark: #2CC483;
 
   --color-blue-light: #4b4bff;
   --color-blue-dark: #1F214A;
-  --color-blue-4: #696FFB0A;
 
   --color-black-60: #00000099;
   --color-black-16: #c5c5d6;
@@ -49,9 +49,11 @@
   --color-blue: #696ffb;
   --color-blue-60: #9da1fd;
   --color-blue-32: #c1c3fe;
+  --color-blue-24: #696FFB3D;
   --color-blue-20: #d0d2fe;
   --color-blue-12: #dbdcff;
   --color-blue-8: #696FFB14;
+  --color-blue-4: #696FFB0A;
 
   --font-weight-black: 900;
 

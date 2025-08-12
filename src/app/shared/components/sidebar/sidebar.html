@@ -23,8 +23,8 @@
         }
       </div>
 
-      <div class="expand-btn" (click)="toggleSidebar()" tabindex="0" role="button" aria-label="Toggle sidebar">
-        <span class="material-icons text-black-60 dark:text-white-16">
+      <div class="expand-btn border border-black-16 dark:border-white-16 bg-white dark:bg-blue-dark" (click)="toggleSidebar()" tabindex="0" role="button" aria-label="Toggle sidebar">
+        <span class="material-icons text-black-60 dark:text-white">
           {{ isExpanded() ? 'arrow_back' : 'arrow_forward' }}
         </span>
       </div>
@@ -34,34 +34,34 @@
     <nav class="sidebar-nav pt-8">
       <ul class="nav-list" [class.nav-list-expanded]="!isExpanded()">
         <li class="nav-item" [class.active]="activeItem() === 'dashboard'">
-          <a href="#" class="nav-link" (click)="activeItem.set('dashboard')">
-            <span class="material-icons text-black-60 dark:text-white">dashboard</span>
+          <a href="#" class="nav-link group focus:bg-blue-24" (click)="activeItem.set('dashboard')">
+            <span class="material-icons font-bold text-black-60 dark:text-white/60">dashboard</span>
             @if (isExpanded()) {
-              <span class="nav-text">Dashboard</span>
+              <span class="text-lg font-bold text-black-60 dark:text-white/60 group-focus:text-blue">Dashboard</span>
             }
           </a>
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'payments'">
-          <a href="#" class="nav-link" (click)="activeItem.set('payments')">
-            <span class="material-icons text-black-60 dark:text-white">credit_card</span>
+          <a href="#" class="nav-link group focus:bg-blue-24" (click)="activeItem.set('payments')">
+            <span class="material-icons font-bold text-black-60 dark:text-white/60 group-focus:text-blue">credit_card</span>
             @if (isExpanded()) {
-              <span class="nav-text">Payment</span>
+              <span class="text-lg font-bold text-black-60 dark:text-white/60 group-focus:text-blue">Payment</span>
             }
           </a>
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'customers'">
-          <a href="#" class="nav-link" (click)="activeItem.set('customers')">
-            <span class="material-icons text-black-60 dark:text-white">group</span>
+          <a href="#" class="nav-link group focus:bg-blue-24" (click)="activeItem.set('customers')">
+            <span class="material-icons font-bold text-black-60 dark:text-white/60 group-focus:text-blue">group</span>
             @if (isExpanded()) {
-              <span class="nav-text">Customers</span>
+              <span class="text-lg font-bold text-black-60 dark:text-white/60 group-focus:text-blue">Customers</span>
             }
           </a>
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'messages'">
-          <a href="#" class="nav-link" (click)="activeItem.set('messages')">
-            <span class="material-icons text-black-60 dark:text-white">chat_bubble_outline</span>
+          <a href="#" class="nav-link group focus:bg-blue-24" (click)="activeItem.set('messages')">
+            <span class="material-icons font-bold text-black-60 dark:text-white/60 group-focus:text-blue">chat_bubble_outline</span>
             @if (isExpanded()) {
-              <span class="nav-text">Messages</span>
+              <span class="text-lg font-bold text-black-60 dark:text-white/60 group-focus:text-blue">Messages</span>
             }
           </a>
         </li>
@@ -74,26 +74,26 @@
     <nav class="sidebar-nav">
       <ul class="nav-list" [class.nav-list-expanded]="!isExpanded()">
         <li class="nav-item" [class.active]="activeItem() === 'products'">
-          <a href="#" class="nav-link" (click)="activeItem.set('products')">
-            <span class="material-icons text-black-60 dark:text-white">shopping_bag</span>
+          <a href="#" class="nav-link group focus:bg-blue-24" (click)="activeItem.set('products')">
+            <span class="material-icons font-bold text-black-60 dark:text-white/60 group-focus:text-blue">shopping_bag</span>
             @if (isExpanded()) {
-              <span class="nav-text">Product</span>
+              <span class="text-lg font-bold text-black-60 dark:text-white/60 group-focus:text-blue">Product</span>
             }
           </a>
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'invoices'">
-          <a href="#" class="nav-link" (click)="activeItem.set('invoices')">
-            <span class="material-icons text-black-60 dark:text-white">receipt</span>
+          <a href="#" class="nav-link group focus:bg-blue-24" (click)="activeItem.set('invoices')">
+            <span class="material-icons font-bold text-black-60 dark:text-white/60 group-focus:text-blue">receipt</span>
             @if (isExpanded()) {
-              <span class="nav-text">Invoice</span>
+              <span class="text-lg font-bold text-black-60 dark:text-white/60 group-focus:text-blue">Invoice</span>
             }
           </a>
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'analytics'">
-          <a href="#" class="nav-link" (click)="activeItem.set('analytics')">
-            <span class="material-icons text-black-60 dark:text-white">trending_up</span>
+            <a href="#" class="nav-link group focus:bg-blue-24" (click)="activeItem.set('analytics')">
+            <span class="material-icons font-bold text-black-60 dark:text-white/60 group-focus:text-blue">trending_up</span>
             @if (isExpanded()) {
-              <span class="nav-text">Analytics</span>
+              <span class="text-lg font-bold text-black-60 dark:text-white/60 group-focus:text-blue">Analytics</span>
             }
           </a>
         </li>
@@ -105,26 +105,26 @@
     <nav class="sidebar-nav">
       <ul class="nav-list" [class.nav-list-expanded]="!isExpanded()">
         <li class="nav-item" [class.active]="activeItem() === 'settings'">
-          <a href="#" class="nav-link" (click)="activeItem.set('settings')">
-            <span class="material-icons text-black-60 dark:text-white">settings</span>
+          <a href="#" class="nav-link group focus:bg-blue-24" (click)="activeItem.set('settings')">
+            <span class="material-icons font-bold text-black-60 dark:text-white/60 group-focus:text-blue">settings</span>
             @if (isExpanded()) {
-              <span class="nav-text">Settings</span>
+              <span class="text-lg font-bold text-black-60 dark:text-white/60 group-focus:text-blue">Settings</span>
             }
           </a>
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'security'">
-          <a href="#" class="nav-link" (click)="activeItem.set('security')">
-            <span class="material-icons text-black-60 dark:text-white">security</span>
+          <a href="#" class="nav-link group focus:bg-blue-24" (click)="activeItem.set('security')">
+            <span class="material-icons font-bold text-black-60 dark:text-white/60 group-focus:text-blue">security</span>
             @if (isExpanded()) {
-              <span class="nav-text">Security</span>
+              <span class="text-lg font-bold text-black-60 dark:text-white/60 group-focus:text-blue">Security</span>
             }
           </a>
         </li>
         <li class="nav-item" [class.active]="activeItem() === 'help'">
-          <a href="#" class="nav-link" (click)="activeItem.set('help')">
-            <span class="material-icons text-black-60 dark:text-white">help_outline</span>
+          <a href="#" class="nav-link group focus:bg-blue-24" (click)="activeItem.set('help')">
+            <span class="material-icons font-bold text-black-60 dark:text-white/60 group-focus:text-blue">help_outline</span>
             @if (isExpanded()) {
-              <span class="nav-text">Help</span>
+              <span class="text-lg font-bold text-black-60 dark:text-white/60 group-focus:text-blue">Help</span>
             }
           </a>
         </li>
@@ -139,9 +139,9 @@
       <ul class="nav-list" [class.nav-list-expanded]="!isExpanded()">
         <li class="nav-item" [class.active]="activeItem() === 'logout'">
           <a href="#" class="nav-link" (click)="activeItem.set('logout')">
-            <span class="material-icons text-black-60 dark:text-white">logout</span>
+            <span class="material-icons font-bold text-black-60 dark:text-white/60 group-focus:text-blue ">logout</span>
             @if (isExpanded()) {
-              <span class="nav-text">Log Out</span>
+              <span class="text-lg font-bold text-black-60 dark:text-white/60 group-focus:text-blue">Log Out</span>
             }
           </a>
         </li>
@@ -156,7 +156,7 @@
   <div class="container-footer">
     <div class="theme-toggle">
         @if (isExpanded()) {
-          <span class="theme-text">Light</span>
+          <span class="font-normal text-sm text-black-60 dark:text-white-60">Light</span>
         }
         <div class="toggle-switch" (click)="toggleTheme()" tabindex="0" role="button" aria-label="Toggle theme">
           <div class="toggle-slider" [class.dark]="isDarkTheme()">
@@ -166,7 +166,7 @@
           </div>
         </div>
         @if (isExpanded()) {
-          <span class="theme-text">Dark</span>
+          <span class="font-normal text-sm text-black-60 dark:text-white-60">Dark</span>
         }
       </div>
   </div>

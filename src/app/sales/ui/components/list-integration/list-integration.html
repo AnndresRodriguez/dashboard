@@ -3,11 +3,11 @@
     <h2 class="text-lg font-semibold text-black dark:text-white">List of Integration</h2>
   </div>
 
-  <div class="mt-4 overflow-hidden rounded-xl border border-gray-200">
+  <div class="mt-4 overflow-hidden rounded-xl border border-black/16 dark:border-blue-dark">
     <!-- Header -->
     <div
-      class="list-header-table bg-blue-8 text-sm font-medium text-black-60
-      dark:bg-white-8  dark:text-white-60"
+      class="list-header-table bg-blue-8 text-sm text-black-60
+      dark:bg-white/8  dark:text-white/60"
     >
       <div class="flex items-center">
         <input
@@ -20,7 +20,7 @@
       </div>
 
       <button
-        class="flex items-center gap-1 text-left hover:text-gray-900"
+        class="flex items-center gap-1 text-left font-normal text-sm hover:text-gray-900 cursor-pointer"
         (click)="sortBy('name')"
         title="Sort by Application"
       >
@@ -42,7 +42,7 @@
       </button>
 
       <button
-        class="flex items-center gap-1 hover:text-gray-900"
+        class="flex items-center gap-1 hover:text-gray-900 cursor-pointer text-sm font-normal"
         (click)="sortBy('type')"
         title="Sort by Type"
       >
@@ -64,7 +64,7 @@
       </button>
 
       <button
-        class="flex items-center gap-1 hover:text-gray-900"
+        class="flex items-center gap-1 hover:text-gray-900 cursor-pointer text-sm font-normal"
         (click)="sortBy('ratePct')"
         title="Sort by Rate"
       >
@@ -86,7 +86,7 @@
       </button>
 
       <button
-        class="ml-auto flex items-center gap-1 hover:text-gray-900 justify-self-end"
+        class="flex items-center justify-end gap-1 hover:text-gray-900 cursor-pointer text-sm font-normal"
         (click)="sortBy('profitUsd')"
         title="Sort by Profit"
       >
@@ -176,25 +176,25 @@
             }
           }
         </div>
-        <span class="truncate font-medium text-gray-800">{{ row.name }}</span>
+        <span class="truncate font-medium text-black dark:text-white">{{ row.name }}</span>
       </div>
 
       <!-- Type -->
-      <div class="text-gray-600">{{ row.type }}</div>
+      <div class="text-black/60 dark:text-white/60">{{ row.type }}</div>
 
       <!-- Rate -->
       <div class="flex items-center gap-3">
-        <div class="h-2 w-40 rounded-full bg-gray-200">
+        <div class="h-2 w-40 rounded-full bg-blue-20">
           <div
             class="h-2 rounded-full bg-blue"
             [style.width.%]="row.ratePct"
           ></div>
         </div>
-        <span class="text-gray-600">{{ row.ratePct }}%</span>
+        <span class="text-black/60 dark:text-white/60">{{ row.ratePct }}%</span>
       </div>
 
       <!-- Profit -->
-      <div class="text-right font-medium text-black-60 dark:text-white-60">
+      <div class="text-right font-medium text-black/60 dark:text-white/60">
         {{ row.profitUsd | currency: "USD" : "symbol" : "1.0-2" }}
       </div>
     </div>

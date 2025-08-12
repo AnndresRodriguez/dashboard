@@ -16,4 +16,17 @@ export class CardMetric {
   status = input<StatusMetricEnum>(StatusMetricEnum.EQUAL);
 
   protected readonly StatusMetricEnum = StatusMetricEnum;
+
+  getStatusClasses(): string {
+    switch (this.status()) {
+      case StatusMetricEnum.UP:
+        return 'bg-green-light dark:bg-green-dark';
+      case StatusMetricEnum.DOWN:
+        return 'bg-red-light dark:bg-red-dark';
+      case StatusMetricEnum.EQUAL:
+        return 'bg-blue-20 dark:bg-blue-60';
+      default:
+        return 'bg-blue-8';
+    }
+  }
 }

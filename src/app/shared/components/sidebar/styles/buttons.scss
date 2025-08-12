@@ -41,26 +41,11 @@
       flex-shrink: 0;
     }
 
-    .nav-text {
-      font-size: 14px;
-      font-weight: 500;
-      color: #5e5e66;
-      transition: color 0.2s ease;
+    &:focus {
+      background-color: #696FFB3D;
     }
 
     &:hover {
-      background-color: #f7f7ff;
-
-      .material-icons,
-      .nav-text {
-        color: #696ffb;
-      }
-    }
-  }
-
-  &.active {
-    .nav-link {
-      background-color: #e0e1ff;
       .material-icons,
       .nav-text {
         color: #696ffb;
