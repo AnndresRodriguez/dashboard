@@ -1,16 +1,6 @@
 <section class="main-container">
   <main class="container-card-metric">
-    @for (stat of stats(); track stat.title) {
-      <app-card-metric
-        class="flex-grow"
-        [title]="stat.title"
-        [value]="stat.value"
-        [currency]="stat.currency"
-        [percentageChange]="stat.percentageChange"
-        [changeType]="stat.changeType"
-        [description]="stat.description"
-      ></app-card-metric>
-    }
+    <app-sales-metrics class="flex-grow"></app-sales-metrics>
   </main>
 
   <main class="container-sales-overview-region">

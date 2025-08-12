@@ -1,0 +1,13 @@
+<section class="main-container-metrics w-full">
+  @for (stat of stats(); track stat.title) {
+    <app-card-metric
+      class="flex-grow"
+      [title]="stat.title"
+      [value]="stat.value"
+      [currency]="stat.currency"
+      [percentageChange]="stat.percentageChange"
+      [changeType]="stat.changeType"
+      [description]="stat.description"
+    ></app-card-metric>
+  }
+</section>
