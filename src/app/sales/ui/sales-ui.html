@@ -1,40 +1,16 @@
 <section class="main-container">
   <main class="container-card-metric">
-    <app-card-metric
-      class="flex-grow"
-      [title]="title"
-      [value]="value"
-      [percentage]="percentage"
-      [percentageText]="percentageText"
-    >
-    </app-card-metric>
-    <app-card-metric
-      class="flex-grow"
-      [title]="title"
-      [value]="value"
-      [percentage]="percentage"
-      [percentageText]="percentageText"
-      [status]="StatusMetricEnum.UP"
-    >
-    </app-card-metric>
-    <app-card-metric
-      class="flex-grow"
-      [title]="title"
-      [value]="value"
-      [percentage]="percentage"
-      [percentageText]="percentageText"
-      [status]="StatusMetricEnum.DOWN"
-    >
-    </app-card-metric>
-    <app-card-metric
-      class="flex-grow"
-      [title]="title"
-      [value]="value"
-      [percentage]="percentage"
-      [percentageText]="percentageText"
-      [status]="StatusMetricEnum.UP"
-    >
-    </app-card-metric>
+    @for (stat of stats(); track stat.title) {
+      <app-card-metric
+        class="flex-grow"
+        [title]="stat.title"
+        [value]="stat.value"
+        [currency]="stat.currency"
+        [percentageChange]="stat.percentageChange"
+        [changeType]="stat.changeType"
+        [description]="stat.description"
+      ></app-card-metric>
+    }
   </main>
 
   <main class="container-sales-overview-region">
@@ -54,5 +30,4 @@
       <app-list-integration></app-list-integration>
     </div>
   </main>
-
 </section>

@@ -1,20 +1,6 @@
-import {
-  ApplicationConfig,
-  provideBrowserGlobalErrorListeners,
-  provideZonelessChangeDetection,
-} from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { provideEchartsCore } from 'ngx-echarts';
-
-import { routes } from './app.routes';
+import { ApplicationConfig } from '@angular/core';
+import { allProviders } from './core/providers/providers';
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideZonelessChangeDetection(),
-    provideRouter(routes),
-    provideEchartsCore({
-      echarts: () => import('echarts'),
-    }),
-  ],
+  providers: allProviders,
 };

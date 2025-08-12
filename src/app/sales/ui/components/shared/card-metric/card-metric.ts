@@ -11,14 +11,15 @@ import { StatusMetricEnum } from '../../../enums/status-metric-enum';
 export class CardMetric {
   title = input<string>('');
   value = input<number>(0);
-  percentage = input<string>('');
-  percentageText = input<string>('');
-  status = input<StatusMetricEnum>(StatusMetricEnum.EQUAL);
+  currency = input<string>('');
+  percentageChange = input<number>(0);
+  changeType = input<string>('up');
+  description = input<string>('');
 
   protected readonly StatusMetricEnum = StatusMetricEnum;
 
   getStatusClasses(): string {
-    switch (this.status()) {
+    switch (this.changeType()) {
       case StatusMetricEnum.UP:
         return 'bg-green-light dark:bg-green-dark';
       case StatusMetricEnum.DOWN:

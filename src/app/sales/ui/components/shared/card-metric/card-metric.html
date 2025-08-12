@@ -11,7 +11,7 @@
     [class]="getStatusClasses()">
     <div>
       <span class="material-icons text-black dark:text-white icon-percentage">
-        @switch (status()) {
+        @switch (changeType()) {
           @case (StatusMetricEnum.UP) {
             arrow_upward
           }
@@ -24,10 +24,10 @@
         }
       </span>
     </div>
-    <h3 class="text-black dark:text-white font-normal text-sm"> {{ percentage() }} </h3>
+    <h3 class="text-black dark:text-white font-normal text-sm"> {{ percentageChange() }} </h3>
     </div>
     <div class="card-metric-percentage-text">
-      <h3 class="text-black/60 dark:text-white/60 font-normal text-sm"> {{ percentageText() }} </h3>
+      <h3 class="text-black/60 dark:text-white/60 font-normal text-sm"> {{ description() }} </h3>
     </div>
   </div>
 </div>

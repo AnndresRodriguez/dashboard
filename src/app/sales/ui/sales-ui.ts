@@ -1,11 +1,18 @@
-import { Component, signal, ViewChild, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  signal,
+  ViewChild,
+  AfterViewInit,
+  inject,
+} from '@angular/core';
 import { CardMetric } from './components/shared/card-metric/card-metric';
-import { StatusMetricEnum } from './enums/status-metric-enum';
 import { SalesOverview } from './components/sales-overview/sales-overview';
 import { SalesByRegion } from './components/sales-by-region/sales-by-region';
 import { DonutChart } from './components/shared/donut-chart/donut-chart';
 import { RegisteredUsers } from './components/registered-users/registered-users';
 import { ListIntegration } from './components/list-integration/list-integration';
+import { GetStatsUseCase } from '../application/use-case/get-stats.usecase';
+import { StatsResponse } from '../domain/interfaces/stats.interface';
 
 @Component({
   selector: 'app-sales-ui',
@@ -22,19 +29,23 @@ import { ListIntegration } from './components/list-integration/list-integration'
 export class SalesUi implements AfterViewInit {
   @ViewChild('trafficChart') trafficChart!: DonutChart;
 
-  title = 'Total Sales';
-  value = 15000;
-  percentage = '25%';
-  percentageText = 'Compared to last month';
-
-  premiumUsers = signal(2804);
-  basicUsers = signal(397);
-
-  protected readonly StatusMetricEnum = StatusMetricEnum;
+  private readonly getStatsUseCase = inject(GetStatsUseCase);
+  protected readonly stats = signal<StatsResponse[]>([]);
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.trafficChart.updateUsers(this.premiumUsers(), this.basicUsers());
+    this.getStatsUseCase.execute().subscribe({
+      next: (stats) => {
+        if (Array.isArray(stats)) {
+          this.stats.set(stats);
+        } else {
+          console.error('Stats response is not an array:', stats);
+          this.stats.set([]);
+        }
+      },
+      error: (error) => {
+        console.error('Error fetching stats:', error);
+        this.stats.set([]);
+      },
     });
   }
 }
