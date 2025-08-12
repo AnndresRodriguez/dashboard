@@ -10,8 +10,11 @@ import {
 import { routes } from '../../app.routes';
 import { environment } from '../../../environments/environment';
 import { SalesMetricsPort } from '../../dashboard/domain/ports/sales-metrics.port';
-import { GetStatsUseCase } from '../../dashboard/application/use-case/get-stats.usecase';
+import { GetSalesMetricsUseCase } from '../../dashboard/application/use-case/get-sales-metrics.usecase';
 import { SalesMetricsAdapter } from '../../dashboard/infraestructure/adapters/sales-metric.adapter';
+import { GetSalesOverviewUseCase } from '../../dashboard/application/use-case/get-sales-overview.usecase';
+import { SalesOverviewPort } from '../../dashboard/domain/ports/sales-overview.port';
+import { SalesOverviewAdapter } from '../../dashboard/infraestructure/adapters/sales-overview.adapter';
 
 // ============================================================================
 // INJECTION TOKENS
@@ -64,9 +67,18 @@ export const domainProviders = [
     useClass: SalesMetricsAdapter,
   },
   {
-    provide: GetStatsUseCase,
-    useFactory: () => new GetStatsUseCase(),
+    provide: GetSalesMetricsUseCase,
+    useFactory: () => new GetSalesMetricsUseCase(),
     deps: [SalesMetricsPort],
+  },
+  {
+    provide: SalesOverviewPort,
+    useClass: SalesOverviewAdapter,
+  },
+  {
+    provide: GetSalesOverviewUseCase,
+    useFactory: () => new GetSalesOverviewUseCase(),
+    deps: [SalesOverviewPort],
   },
 ];
 

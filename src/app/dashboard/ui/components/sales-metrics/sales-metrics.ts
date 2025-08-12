@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, inject, signal } from '@angular/core';
 import { CardMetric } from '../shared/card-metric/card-metric';
 import { SalesMetricResponse } from '../../../domain/interfaces/sales-metric.interface';
-import { GetStatsUseCase } from '../../../application/use-case/get-stats.usecase';
+import { GetSalesMetricsUseCase } from '../../../application/use-case/get-sales-metrics.usecase';
 
 @Component({
   selector: 'app-sales-metrics',
@@ -10,7 +10,7 @@ import { GetStatsUseCase } from '../../../application/use-case/get-stats.usecase
   styleUrl: './sales-metrics.scss',
 })
 export class SalesMetrics implements AfterViewInit {
-  private readonly getStatsUseCase = inject(GetStatsUseCase);
+  private readonly getStatsUseCase = inject(GetSalesMetricsUseCase);
   protected readonly stats = signal<SalesMetricResponse[]>([]);
 
   ngAfterViewInit(): void {

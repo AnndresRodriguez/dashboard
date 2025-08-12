@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { SalesMetricResponse } from '../interfaces/sales-metric.interface';
+import { SaleMetric } from '../models/sales-metrics';
 
 export abstract class SalesMetricsPort {
-  abstract getSalesMetrics(): Observable<SalesMetricResponse[]>;
+  abstract getSalesMetrics(): Observable<SaleMetric[]>;
 }

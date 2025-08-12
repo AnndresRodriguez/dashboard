@@ -1,18 +1,18 @@
 import {
   SalesDataPoint,
   SalesOverviewResponse,
-} from '../interfaces/overview.interface';
+} from '../interfaces/sales-overview.interface';
 
-export class Overview {
+export class SalesOverview {
   constructor(
     public totalRevenue: number,
     public totalTarget: number,
     public data: SalesDataPoint[],
   ) {}
 
-  static fromApiResponse(response: SalesOverviewResponse): Overview {
+  static fromApiResponse(response: SalesOverviewResponse): SalesOverview {
     const { salesOverview } = response;
-    return new Overview(
+    return new SalesOverview(
       salesOverview.totalRevenue,
       salesOverview.totalTarget,
       salesOverview.data,
