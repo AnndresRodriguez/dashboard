@@ -1,7 +1,7 @@
 import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
 import { Component, signal, computed, inject, OnInit } from '@angular/core';
-import { GetIntegrationsUseCase } from '../../../application/use-case/get-integrations.usecase';
 import { Integration } from '../../../domain/models/integration';
+import { ListIntegrationStore } from '../../../application/store/list-integration.store';
 
 type SortKey = 'application' | 'type' | 'rate' | 'profit';
 type SortDir = 'asc' | 'desc';
@@ -13,33 +13,29 @@ type SortDir = 'asc' | 'desc';
   styleUrl: './list-integration.scss',
 })
 export class ListIntegration implements OnInit {
-  private readonly getIntegrationsUseCase = inject(GetIntegrationsUseCase);
+  protected readonly store = inject(ListIntegrationStore);
 
-  rows = signal<Integration[]>([]);
+  // rows = signal<Integration[]>([]);
 
   ngOnInit() {
-    this.getIntegrationsUseCase.execute().subscribe((integrations) => {
-      this.rows.set(integrations);
-    });
+    this.store.loadListIntegration();
   }
   // ---- Selección
   allChecked = computed(() => {
-    const rows = this.rows();
+    const rows = this.store.listIntegration();
     return rows.length > 0 && rows.every((r) => r.isSelected);
   });
 
   someChecked = computed(() => {
-    const rows = this.rows();
+    const rows = this.store.listIntegration();
     return !this.allChecked() && rows.some((r) => r.isSelected);
   });
 
   toggleAll(checked: boolean) {
-    this.rows.update((rows) =>
-      rows.map((r) => {
-        r.setSelected(checked);
-        return r;
-      }),
-    );
+    this.store.listIntegration().map((r) => {
+      r.setSelected(checked);
+      return r;
+    });
   }
 
   // ---- Ordenamiento
@@ -56,7 +52,7 @@ export class ListIntegration implements OnInit {
   }
 
   sortedRows = computed(() => {
-    const rows = this.rows();
+    const rows = this.store.listIntegration();
     const sortKey = this.sortKey();
     const sortDir = this.sortDir();
     const arr = [...rows];
