@@ -1,18 +1,18 @@
 import { SalesMetricsPort } from '../../dashboard/domain/ports/sales-metrics.port';
 import { GetSalesMetricsUseCase } from '../../dashboard/application/use-case/get-sales-metrics.usecase';
-import { SalesMetricsAdapter } from '../../dashboard/infraestructure/adapters/sales-metric.adapter';
+import { SalesMetricsAdapter } from '../../dashboard/infrastructure/adapters/sales-metric.adapter';
 import { GetSalesOverviewUseCase } from '../../dashboard/application/use-case/get-sales-overview.usecase';
 import { SalesOverviewPort } from '../../dashboard/domain/ports/sales-overview.port';
-import { SalesOverviewAdapter } from '../../dashboard/infraestructure/adapters/sales-overview.adapter';
+import { SalesOverviewAdapter } from '../../dashboard/infrastructure/adapters/sales-overview.adapter';
 import { SalesRegionPort } from '../../dashboard/domain/ports/sales-region.port';
-import { SalesRegionAdapter } from '../../dashboard/infraestructure/adapters/sales-region.adapter';
+import { SalesRegionAdapter } from '../../dashboard/infrastructure/adapters/sales-region.adapter';
 import { GetSalesRegionUseCase } from '../../dashboard/application/use-case/get-sales-region.usecase';
 import { GetRegisteredUsersUseCase } from '../../dashboard/application/use-case/get-registered-users.usecase';
 import { RegisteredUsersPort } from '../../dashboard/domain/ports/registered-users.port';
-import { RegisteredUsersAdapter } from '../../dashboard/infraestructure/adapters/registered-users.adapter';
+import { RegisteredUsersAdapter } from '../../dashboard/infrastructure/adapters/registered-users.adapter';
 import { IntegrationPort } from '../../dashboard/domain/ports/integration.port';
 import { GetIntegrationsUseCase } from '../../dashboard/application/use-case/get-integrations.usecase';
-import { IntegrationAdapter } from '../../dashboard/infraestructure/adapters/integration.adapter';
+import { IntegrationAdapter } from '../../dashboard/infrastructure/adapters/integration.adapter';
 
 // ============================================================================
 // DOMAIN PROVIDERS (Clean Architecture)
