@@ -1,6 +1,19 @@
-# 🚀 Dashboard - Arquitectura Limpia con Angular
+# 🚀 Dashboard (FinData) - Arquitectura Limpia con Angular
 
 Un dashboard moderno construido con **Angular 20** siguiendo los principios de **Arquitectura Limpia (Clean Architecture)** y utilizando **NgRx Signals** para el manejo de estado reactivo.
+
+## 🎯 Demo
+
+[🔗 **Ver Demo en Vivo**](https://dashboard-findata.netlify.app/) <!-- Aquí puedes agregar el enlace al demo cuando esté disponible -->
+
+### Características del Demo
+- 📊 Dashboard interactivo con métricas en tiempo real
+- 📈 Gráficos responsivos con ECharts
+- 🌙 Cambio de tema oscuro/claro
+- 📱 Diseño responsive para móviles
+- ⚡ Carga rápida con signals reactivos
+
+---
 
 ## 📋 Tabla de Contenidos
 - [Demo](#-demo)
@@ -14,19 +27,6 @@ Un dashboard moderno construido con **Angular 20** siguiendo los principios de *
 - [API Endpoints](#-api-endpoints)
 - [Estados de la UI](#-estados-de-la-ui)
 - [Scripts Disponibles](#-scripts-disponibles)
-
-## 🎯 Demo
-
-[🔗 **Ver Demo en Vivo**](#) <!-- Aquí puedes agregar el enlace al demo cuando esté disponible -->
-
-### Características del Demo
-- 📊 Dashboard interactivo con métricas en tiempo real
-- 📈 Gráficos responsivos con ECharts
-- 🌙 Cambio de tema oscuro/claro
-- 📱 Diseño responsive para móviles
-- ⚡ Carga rápida con signals reactivos
-
----
 
 ## ✨ Características
 
