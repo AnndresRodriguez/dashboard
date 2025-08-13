@@ -1,16 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SalesByRegion } from './sales-by-region';
+import { createTestingModule } from '../../../../../testing/test-utils';
 
 describe('SalesByRegion', () => {
   let component: SalesByRegion;
   let fixture: ComponentFixture<SalesByRegion>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [SalesByRegion]
-    })
-    .compileComponents();
+    await createTestingModule([SalesByRegion]).compileComponents();
 
     fixture = TestBed.createComponent(SalesByRegion);
     component = fixture.componentInstance;

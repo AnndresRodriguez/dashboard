@@ -1,3 +1,4 @@
+import { createTestingModule } from '../../../../../../testing/test-utils';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LineChart } from './line-chart';
@@ -7,9 +8,7 @@ describe('LineChart', () => {
   let fixture: ComponentFixture<LineChart>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [LineChart],
-    }).compileComponents();
+    await createTestingModule([LineChart]).compileComponents();
 
     fixture = TestBed.createComponent(LineChart);
     component = fixture.componentInstance;

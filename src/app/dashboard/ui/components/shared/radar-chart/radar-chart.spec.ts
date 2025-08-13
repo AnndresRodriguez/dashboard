@@ -1,3 +1,4 @@
+import { createTestingModule } from '../../../../../../testing/test-utils';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RadarChart } from './radar-chart';
@@ -7,9 +8,7 @@ describe('RadarChart', () => {
   let fixture: ComponentFixture<RadarChart>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RadarChart],
-    }).compileComponents();
+    await createTestingModule([RadarChart]).compileComponents();
 
     fixture = TestBed.createComponent(RadarChart);
     component = fixture.componentInstance;
