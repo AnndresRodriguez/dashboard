@@ -7,8 +7,7 @@ describe('RegisteredUsers', () => {
   let fixture: ComponentFixture<RegisteredUsers>;
 
   beforeEach(async () => {
-    await createTestingModule([RegisteredUsers])
-      .compileComponents();
+    await createTestingModule([RegisteredUsers]).compileComponents();
 
     fixture = TestBed.createComponent(RegisteredUsers);
     component = fixture.componentInstance;
