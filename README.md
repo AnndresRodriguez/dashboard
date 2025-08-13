@@ -1,4 +1,4 @@
-# 🚀 Dashboard (FinData) - Arquitectura Limpia con Angular
+# 🚀 Dashboard (FinData)
 
 Un dashboard moderno construido con **Angular 20** siguiendo los principios de **Arquitectura Limpia (Clean Architecture)** y utilizando **NgRx Signals** para el manejo de estado reactivo.
 
