@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { Type } from '@angular/core';
+import { Type, EnvironmentProviders } from '@angular/core';
 import { GetSalesMetricsUseCase } from '../app/dashboard/application/use-case/get-sales-metrics.usecase';
 import { GetSalesRegionUseCase } from '../app/dashboard/application/use-case/get-sales-region.usecase';
 import { GetSalesOverviewUseCase } from '../app/dashboard/application/use-case/get-sales-overview.usecase';
@@ -49,7 +49,10 @@ export const mockGetIntegrationsUseCase = {
 // Configuración común para TestBed
 export const createTestingModule = (
   imports: Type<unknown>[],
-  providers: { provide: Type<unknown> | string; useValue: unknown }[] = [],
+  providers: (
+    | { provide: Type<unknown> | string; useValue: unknown }
+    | EnvironmentProviders
+  )[] = [],
 ) => {
   return TestBed.configureTestingModule({
     imports,
