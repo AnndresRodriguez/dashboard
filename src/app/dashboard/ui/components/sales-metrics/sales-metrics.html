@@ -1,13 +1,41 @@
-<section class="main-container-metrics w-full">
-  @for (stat of stats(); track stat.title) {
-    <app-card-metric
-      class="flex-grow"
-      [title]="stat.title"
-      [value]="stat.value"
-      [currency]="stat.currency"
-      [percentageChange]="stat.percentageChange"
-      [changeType]="stat.changeType"
-      [description]="stat.description"
-    ></app-card-metric>
+<section
+  class="main-container-metrics w-full"
+  [class.justify-center]="store.hasError()"
+  [class.justify-stretch]="!store.hasError()"
+>
+  @if (store.loading()) {
+    <div class="flex justify-center items-center p-8">
+      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      <span class="ml-2 text-gray-600">Cargando métricas...</span>
+    </div>
+  } @else if (store.hasError()) {
+    <div class="flex justify-center items-center p-8">
+      <div class="text-red-600 text-center">
+        <p class="font-semibold">Error al cargar datos</p>
+        <p class="text-sm mt-1"> No hemos podido obtener la información en este momento, por favor intentalo de nuevo</p>
+        <button
+          (click)="store.loadSalesMetrics()"
+          class="mt-2 px-4 py-2 bg-blue text-white rounded font-normal text-sm hover:bg-blue-700"
+        >
+          Reintentar
+        </button>
+      </div>
+    </div>
+  } @else if (store.isEmpty()) {
+    <div class="flex justify-center items-center p-8">
+      <p class="text-gray-500">No hay métricas disponibles</p>
+    </div>
+  } @else {
+    @for (metric of store.salesMetrics(); track metric.getTitle()) {
+      <app-card-metric
+        class="flex-grow"
+        [title]="metric.getTitle()"
+        [value]="metric.getValue()"
+        [currency]="metric.getCurrency()"
+        [percentageChange]="metric.getPercentageChange()"
+        [changeType]="metric.getChangeType()"
+        [description]="metric.getDescription()"
+      ></app-card-metric>
+    }
   }
 </section>

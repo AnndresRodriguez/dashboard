@@ -9,6 +9,7 @@ import { SaleMetric } from '../../domain/models/sales-metrics';
 export class SalesMetricsAdapter implements SalesMetricsPort {
   private readonly http = inject(HttpClient);
   private readonly env = inject(APP_ENV);
+  // private readonly ID_JSON_SALES_METRICS = '1dbe-8a86-4247-8d53/?delay=10000';
   private readonly ID_JSON_SALES_METRICS = '1dbe-8a86-4247-8d53';
 
   getSalesMetrics(): Observable<SaleMetric[]> {

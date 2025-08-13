@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { CardMetric } from '../shared/card-metric/card-metric';
-import { SalesMetricResponse } from '../../../domain/interfaces/sales-metric.interface';
-import { GetSalesMetricsUseCase } from '../../../application/use-case/get-sales-metrics.usecase';
+import { SalesMetricStore } from '../../../application/store/sales-metric.store';
 
 @Component({
   selector: 'app-sales-metrics',
@@ -10,13 +9,11 @@ import { GetSalesMetricsUseCase } from '../../../application/use-case/get-sales-
   styleUrl: './sales-metrics.scss',
 })
 export class SalesMetrics implements AfterViewInit {
-  private readonly getStatsUseCase = inject(GetSalesMetricsUseCase);
-  protected readonly stats = signal<SalesMetricResponse[]>([]);
+  // Inyectar el store
+  protected readonly store = inject(SalesMetricStore);
 
   ngAfterViewInit(): void {
-    this.getStatsUseCase.execute().subscribe({
-      next: (stats) => this.stats.set(stats),
-      error: (error) => console.error(error),
-    });
+    // Cargar datos usando el store
+    this.store.loadSalesMetrics();
   }
 }

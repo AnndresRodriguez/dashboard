@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { RadarChart } from '../shared/radar-chart/radar-chart';
-import { SaleRegion } from '../../../domain/models/sales-region';
-import { GetSalesRegionUseCase } from '../../../application/use-case/get-sales-region.usecase';
+import { SalesRegionStore } from '../../../application/store/sales-region.store';
 
 @Component({
   selector: 'app-sales-by-region',
@@ -10,14 +9,9 @@ import { GetSalesRegionUseCase } from '../../../application/use-case/get-sales-r
   styleUrl: './sales-by-region.scss',
 })
 export class SalesByRegion implements AfterViewInit {
-  private readonly getSalesRegionUseCase = inject(GetSalesRegionUseCase);
-
-  protected readonly salesRegion = signal<SaleRegion[]>([]);
+  protected readonly store = inject(SalesRegionStore);
 
   ngAfterViewInit(): void {
-    this.getSalesRegionUseCase.execute().subscribe({
-      next: (data) => this.salesRegion.set(data),
-      error: (error) => console.error(error),
-    });
+    this.store.loadSalesRegion();
   }
 }

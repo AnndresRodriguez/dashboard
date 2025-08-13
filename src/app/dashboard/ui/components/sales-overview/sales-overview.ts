@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { LineChart } from '../shared/line-chart/line-chart';
-import { SalesOverviewData } from '../../../domain/interfaces/sales-overview.interface';
-import { GetSalesOverviewUseCase } from '../../../application/use-case/get-sales-overview.usecase';
+import { SalesOverviewStore } from '../../../application/store/sales-overview.store';
 import { DecimalPipe } from '@angular/common';
 
 @Component({
@@ -11,18 +10,11 @@ import { DecimalPipe } from '@angular/common';
   styleUrl: './sales-overview.scss',
 })
 export class SalesOverview implements AfterViewInit {
-  private readonly getSalesOverviewUseCase = inject(GetSalesOverviewUseCase);
-
-  protected readonly salesOverview = signal<SalesOverviewData>({
-    totalRevenue: 0,
-    totalTarget: 0,
-    data: [],
-  });
+  // Inyectar el store
+  protected readonly store = inject(SalesOverviewStore);
 
   ngAfterViewInit(): void {
-    this.getSalesOverviewUseCase.execute().subscribe({
-      next: (data) => this.salesOverview.set(data),
-      error: (error) => console.error(error),
-    });
+    // Cargar datos usando el store
+    this.store.loadSalesOverview();
   }
 }
