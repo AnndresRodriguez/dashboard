@@ -4,18 +4,19 @@
   [class.opacity-0]="!menuStore.isExpanded()"
   [class.pointer-events-none]="!menuStore.isExpanded()"
   (click)="toggleSidebar()"
-  (keydown.enter)="toggleSidebar()"
-  (keydown.space)="toggleSidebar()"
   tabindex="0"
   role="button"
   aria-label="Cerrar menú"
 ></div>
 
+<div class="sidebar-container h-full absolute max-w-max sm:block sm:relative"
+[class.hidden]="!menuStore.isExpanded()">
+
 <div class="sidebar
-absolute sm:block sm:relative
 bg-white dark:bg-blue-dark transition-colors duration-200 z-50"
 [class.expanded]="menuStore.isExpanded()"
-[class.hidden]="!menuStore.isExpanded()"
+
+
 >
   <header class="container-header-body">
     <!-- Logo y botón de expandir -->
@@ -188,7 +189,5 @@ bg-white dark:bg-blue-dark transition-colors duration-200 z-50"
         }
       </div>
   </div>
-
-
-
+  </div>
 </div>
