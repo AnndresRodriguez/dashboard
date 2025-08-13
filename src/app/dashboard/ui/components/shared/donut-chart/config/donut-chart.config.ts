@@ -28,7 +28,7 @@ export const createDonutChartConfig = (): EChartsOption => {
         fontSize: 12,
       },
       extraCssText: 'border-radius: 8px; padding: 8px 12px;',
-      position: 'right',
+      position: 'top',
     },
     legend: {
       show: false,

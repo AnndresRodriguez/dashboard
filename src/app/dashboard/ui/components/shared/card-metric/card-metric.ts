@@ -1,16 +1,17 @@
 import { Component, input } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, PercentPipe } from '@angular/common';
 import { StatusMetricEnum } from '../../../enums/status-metric-enum';
 
 @Component({
   selector: 'app-card-metric',
-  imports: [DecimalPipe],
+  imports: [DecimalPipe, PercentPipe],
   templateUrl: './card-metric.html',
   styleUrl: './card-metric.scss',
 })
 export class CardMetric {
   title = input<string>('');
   value = input<number>(0);
+  valueType = input<'number' | 'percentage'>('number');
   currency = input<string>('');
   percentageChange = input<number>(0);
   changeType = input<string>('up');
@@ -29,5 +30,35 @@ export class CardMetric {
       default:
         return 'bg-blue-8';
     }
+  }
+
+  getFormattedValue(): string {
+    if (this.currency() === '') {
+      return this.value().toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+    }
+
+    if (this.currency() === '%') {
+      return (
+        this.value().toLocaleString('de-DE', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }) + '%'
+      );
+    }
+
+    if (this.currency() === '$') {
+      return (
+        '$ ' +
+        this.value().toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })
+      );
+    }
+
+    return `${this.value()}`;
   }
 }
