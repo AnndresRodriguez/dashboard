@@ -1,5 +1,8 @@
 import { EChartsOption } from 'echarts';
 
+export const COLOR_RIGHT_DARK = '#3a3c8a';
+export const COLOR_RIGHT_LIGHT = '#999dfc';
+
 export interface ValuesDonutChart {
   left: {
     value: number;

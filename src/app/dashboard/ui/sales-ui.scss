@@ -39,6 +39,26 @@
 // Media Queries
 // ==========================================
 
+@media (max-width: 1024px) {
+
+  .sales-overview-region {
+    width: 60%;
+  }
+
+  .sales-by-region {
+    width: 40%;
+  }
+
+  .container-users-table {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .list-integration {
+    width: 100%;
+  }
+}
+
 // Tablet (768px y menos)
 @media (max-width: 768px) {
 

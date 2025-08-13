@@ -35,3 +35,11 @@
 .sales-overview-chart {
   width: 100%;
 }
+
+@media (max-width: 425px) {
+  .sales-overview-title-values {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+}

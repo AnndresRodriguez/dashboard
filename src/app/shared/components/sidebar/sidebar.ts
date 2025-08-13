@@ -1,4 +1,6 @@
 import { Component, inject, Renderer2, signal } from '@angular/core';
+import { DarkLightStore } from '../../../dashboard/ui/store/dark-light.store';
+import { StatusMenuStore } from '../../../dashboard/ui/store/status-menu.store';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,19 +10,17 @@ import { Component, inject, Renderer2, signal } from '@angular/core';
 })
 export class Sidebar {
   activeItem = signal('dashboard');
-  isExpanded = signal(false);
-  isDarkTheme = signal(false);
   private renderer = inject(Renderer2);
+  protected readonly store = inject(DarkLightStore);
+  protected readonly menuStore = inject(StatusMenuStore);
 
   toggleSidebar() {
-    this.isExpanded.set(!this.isExpanded());
+    this.menuStore.toggleIsExpanded();
   }
 
   toggleTheme() {
-    const isDarkTheme = this.isDarkTheme();
-    this.isDarkTheme.set(!isDarkTheme);
-
-    if (!isDarkTheme) {
+    this.store.toggleDarkMode();
+    if (this.store.darkMode()) {
       this.renderer.addClass(document.documentElement, 'dark');
       localStorage['theme'] = 'dark';
     } else {

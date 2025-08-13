@@ -34,13 +34,13 @@
         <div class="flex items-center gap-2">
           <div class="w-[4px] h-[30px] bg-blue rounded-sm"></div>
           <div class="flex flex-col gap-2">
-            <p class="text-black font-bold text-sm">{{ store.registeredUsers()?.premium | number:'1.0-0' }}</p>
+            <p class="text-black dark:text-white font-bold text-sm">{{ store.registeredUsers()?.premium | number:'1.0-0' }}</p>
             <p class="text-black-60 dark:text-white/60 font-normal text-sm">Premium Users</p>
           </div>
         </div>
         <div class="flex items-center gap-2">
           <div class="flex flex-col items-end gap-2">
-            <p class="text-black font-bold text-sm">{{ store.registeredUsers()?.basic | number:'1.0-0' }}</p>
+            <p class="text-black dark:text-white font-bold text-sm">{{ store.registeredUsers()?.basic | number:'1.0-0' }}</p>
             <p class="text-black-60 dark:text-white/60 font-normal text-sm">Basic Users</p>
           </div>
           <div class="w-[4px] h-[30px] bg-blue-20 rounded-sm"></div>

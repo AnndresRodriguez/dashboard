@@ -1,4 +1,5 @@
 import { EChartsOption } from 'echarts';
+import { RadarOption } from 'echarts/types/dist/shared';
 
 export interface RadarChartData {
   name: string;
@@ -140,10 +141,13 @@ export const createRadarChartConfig = (
 ): EChartsOption => {
   const maxValue = calculateMaxValue(data);
 
+  const axis: RadarOption = config.radar as RadarOption;
+
   return {
     ...config,
     radar: {
       ...config.radar,
+      startAngle: 180,
       axisName: {
         formatter: (name?: string) => {
           if (!name) return '';
@@ -152,13 +156,13 @@ export const createRadarChartConfig = (
           const index = regions.indexOf(name);
           return `${name}\n{value|${values[index]}}`;
         },
-        color: '#333',
+        color: axis.axisName?.color,
         fontSize: 11,
         rich: {
           value: {
             fontSize: 13,
             fontWeight: 'bold',
-            color: '#333',
+            color: axis.axisName?.rich?.['value']?.color,
             padding: [3, 0, 0, 0],
           },
         },

@@ -4,3 +4,11 @@
   gap: 24px;
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .main-container-metrics {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+}

@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
 import { RadarChart } from '../shared/radar-chart/radar-chart';
 import { SalesRegionStore } from '../../../application/store/sales-region.store';
+import { DarkLightStore } from '../../store/dark-light.store';
 
 @Component({
   selector: 'app-sales-by-region',
@@ -10,6 +11,7 @@ import { SalesRegionStore } from '../../../application/store/sales-region.store'
 })
 export class SalesByRegion implements AfterViewInit {
   protected readonly store = inject(SalesRegionStore);
+  protected readonly modeStore = inject(DarkLightStore);
 
   ngAfterViewInit(): void {
     this.store.loadSalesRegion();

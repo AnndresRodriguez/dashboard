@@ -1,4 +1,11 @@
-import { Component, OnInit, OnDestroy, input, effect } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  input,
+  effect,
+  inject,
+} from '@angular/core';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { EChartsOption } from 'echarts';
 import {
@@ -7,6 +14,7 @@ import {
   createRadarChartLightConfig,
 } from './config/radar-chart.config';
 import { SaleRegion } from '../../../../domain/models/sales-region';
+import { DarkLightStore } from '../../../store/dark-light.store';
 
 @Component({
   selector: 'app-radar-chart',
@@ -19,9 +27,11 @@ export class RadarChart implements OnInit, OnDestroy {
   chartOption: EChartsOption = {};
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private chartInstance: any = null;
-  private isDarkMode = false;
+  // private isDarkMode = false;
 
   data = input<SaleRegion[]>([]);
+
+  protected readonly modeApp = inject(DarkLightStore);
 
   constructor() {
     effect(() => {
@@ -37,29 +47,12 @@ export class RadarChart implements OnInit, OnDestroy {
   }
 
   private initChart() {
-    // const data = this.getDynamicData();
-
-    const baseConfig = this.isDarkMode
+    const baseConfig = this.modeApp.darkMode()
       ? createRadarChartDarkConfig()
       : createRadarChartLightConfig();
 
     this.chartOption = createRadarChartConfig(this.data(), baseConfig);
   }
-
-  /**
-   * Método para obtener datos de ejemplo (simula una llamada a API)
-   * Borrar este método cuando se tenga la API
-   */
-  // getDynamicData(): RadarChartData[] {
-  //   return [
-  //     { name: 'Pacific', value: 2475 },
-  //     { name: 'Middle Est', value: 1749 },
-  //     { name: 'Africa', value: 1591 },
-  //     { name: 'Americans', value: 1762 },
-  //     { name: 'Europe', value: 2865 },
-  //     { name: 'Asia', value: 2201 },
-  //   ];
-  // }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async onChartInit(ec: any) {
@@ -72,7 +65,11 @@ export class RadarChart implements OnInit, OnDestroy {
    * @param maxValue - Valor máximo opcional (por defecto 3000)
    */
   updateChartData(data: SaleRegion[]) {
+    this.chartOption = this.modeApp.darkMode()
+      ? createRadarChartDarkConfig()
+      : createRadarChartLightConfig();
     this.chartOption = createRadarChartConfig(data, this.chartOption);
+
     if (this.chartInstance) {
       this.chartInstance.setOption(this.chartOption);
     }
@@ -90,7 +87,6 @@ export class RadarChart implements OnInit, OnDestroy {
   }
 
   changeToDarkMode() {
-    this.isDarkMode = true;
     const baseConfig = createRadarChartDarkConfig();
     this.chartOption = createRadarChartConfig(this.data(), baseConfig);
 
@@ -100,7 +96,6 @@ export class RadarChart implements OnInit, OnDestroy {
   }
 
   changeToLightMode() {
-    this.isDarkMode = false;
     const baseConfig = createRadarChartLightConfig();
     this.chartOption = createRadarChartConfig(this.data(), baseConfig);
 

@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { StatusMenuStore } from '../../../dashboard/ui/store/status-menu.store';
 
 @Component({
   selector: 'app-navbar',
@@ -10,13 +11,9 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class Navbar {
-  isMenuOpen = signal(false);
+  protected readonly menuStore = inject(StatusMenuStore);
 
   toggleMenu() {
-    this.isMenuOpen.set(!this.isMenuOpen());
-  }
-
-  closeMenu() {
-    this.isMenuOpen.set(false);
+    this.menuStore.toggleIsExpanded();
   }
 }
