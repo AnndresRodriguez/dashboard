@@ -1,7 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
-import { provideEchartsCore } from 'ngx-echarts';
 import {
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
@@ -9,6 +8,8 @@ import {
 
 import { routes } from '../../app.routes';
 import { environment } from '../../../environments/environment';
+import { provideEchartsCore } from 'ngx-echarts';
+import { provideNgxSkeletonLoader } from 'ngx-skeleton-loader';
 import { domainProviders } from './domain-providers';
 
 // ============================================================================
@@ -38,6 +39,13 @@ export const angularCoreProviders = [
 export const thirdPartyProviders = [
   provideEchartsCore({
     echarts: () => import('echarts'),
+  }),
+  provideNgxSkeletonLoader({
+    animation: 'pulse',
+    appearance: 'line',
+    theme: {
+      extendsFromRoot: true,
+    },
   }),
 ];
 

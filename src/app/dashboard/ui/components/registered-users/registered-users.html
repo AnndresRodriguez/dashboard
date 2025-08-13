@@ -1,26 +1,43 @@
-<section class="card bg-white dark:bg-blue-dark card-registered-users">
-
-  <div class="registered-users-title">
-    <h3 class="text-black dark:text-white font-bold text-lg"> Registered Users </h3>
+@if (store.loading()) {
+  <div class="w-full">
+    <ngx-skeleton-loader
+      [theme]="{
+        height: '19.5rem',
+        width: '27rem',
+        borderRadius: '8px',
+      }"
+      [count]="1"
+    ></ngx-skeleton-loader>
   </div>
 
-  @if (store.loading()) {
-    <div class="flex justify-center items-center p-8">
-      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-      <span class="ml-2 text-gray-600">Cargando métricas...</span>
+}
+
+@else if (store.hasError()) {
+  <div class="flex justify-center items-center p-8">
+    <div class="text-red-600 text-center">
+      <p class="font-semibold">Error al cargar datos</p>
+      <p class="text-sm mt-1">
+        No hemos podido obtener la información en este momento, por favor
+        intentalo de nuevo
+      </p>
     </div>
-  } @else if (store.hasError()) {
-    <div class="flex justify-center items-center p-8">
-      <div class="text-red-600 text-center">
-        <p class="font-semibold">Error al cargar datos</p>
-        <p class="text-sm mt-1"> No hemos podido obtener la información en este momento, por favor intentalo de nuevo</p>
-      </div>
+  </div>
+}
+
+@else if (store.isEmpty()) {
+  <div class="flex justify-center items-center p-8">
+    <p class="text-gray-500">No hay métricas disponibles</p>
+  </div>
+}
+
+@else {
+
+  <section class="card bg-white dark:bg-blue-dark card-registered-users">
+    <div class="registered-users-title">
+      <h3 class="text-black dark:text-white font-bold text-lg">
+        Registered Users
+      </h3>
     </div>
-  } @else if (store.isEmpty()) {
-    <div class="flex justify-center items-center p-8">
-      <p class="text-gray-500">No hay métricas disponibles</p>
-    </div>
-  } @else {
     <div class="registered-users-chart">
       <div class="registered-users-chart-donut">
         <app-donut-chart
@@ -34,21 +51,27 @@
         <div class="flex items-center gap-2">
           <div class="w-[4px] h-[30px] bg-blue rounded-sm"></div>
           <div class="flex flex-col gap-2">
-            <p class="text-black dark:text-white font-bold text-sm">{{ store.registeredUsers()?.premium | number:'1.0-0' }}</p>
-            <p class="text-black-60 dark:text-white/60 font-normal text-sm">Premium Users</p>
+            <p class="text-black dark:text-white font-bold text-sm">
+              {{ store.registeredUsers()?.premium | number: "1.0-0" }}
+            </p>
+            <p class="text-black-60 dark:text-white/60 font-normal text-sm">
+              Premium Users
+            </p>
           </div>
         </div>
         <div class="flex items-center gap-2">
           <div class="flex flex-col items-end gap-2">
-            <p class="text-black dark:text-white font-bold text-sm">{{ store.registeredUsers()?.basic | number:'1.0-0' }}</p>
-            <p class="text-black-60 dark:text-white/60 font-normal text-sm">Basic Users</p>
+            <p class="text-black dark:text-white font-bold text-sm">
+              {{ store.registeredUsers()?.basic | number: "1.0-0" }}
+            </p>
+            <p class="text-black-60 dark:text-white/60 font-normal text-sm">
+              Basic Users
+            </p>
           </div>
           <div class="w-[4px] h-[30px] bg-blue-20 rounded-sm"></div>
         </div>
       </div>
     </div>
+  </section>
 
-  }
-
-
-</section>
+}

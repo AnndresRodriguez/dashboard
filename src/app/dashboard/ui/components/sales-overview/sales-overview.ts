@@ -2,10 +2,11 @@ import { AfterViewInit, Component, inject } from '@angular/core';
 import { LineChart } from '../shared/line-chart/line-chart';
 import { SalesOverviewStore } from '../../../application/store/sales-overview.store';
 import { DecimalPipe } from '@angular/common';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-sales-overview',
-  imports: [LineChart, DecimalPipe],
+  imports: [LineChart, DecimalPipe, NgxSkeletonLoaderModule],
   templateUrl: './sales-overview.html',
   styleUrl: './sales-overview.scss',
 })

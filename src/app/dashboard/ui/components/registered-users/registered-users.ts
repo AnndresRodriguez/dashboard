@@ -2,10 +2,11 @@ import { AfterViewInit, Component, inject } from '@angular/core';
 import { DonutChart } from '../shared/donut-chart/donut-chart';
 import { DecimalPipe } from '@angular/common';
 import { RegisteredUsersStore } from '../../../application/store/registered-users.store';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-registered-users',
-  imports: [DonutChart, DecimalPipe],
+  imports: [DonutChart, DecimalPipe, NgxSkeletonLoaderModule],
   templateUrl: './registered-users.html',
   styleUrl: './registered-users.scss',
 })

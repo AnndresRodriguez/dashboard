@@ -2,20 +2,19 @@ import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
 import { Component, signal, computed, inject, OnInit } from '@angular/core';
 import { Integration } from '../../../domain/models/integration';
 import { ListIntegrationStore } from '../../../application/store/list-integration.store';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 type SortKey = 'application' | 'type' | 'rate' | 'profit';
 type SortDir = 'asc' | 'desc';
 
 @Component({
   selector: 'app-list-integration',
-  imports: [CurrencyPipe, NgOptimizedImage],
+  imports: [CurrencyPipe, NgOptimizedImage, NgxSkeletonLoaderModule],
   templateUrl: './list-integration.html',
   styleUrl: './list-integration.scss',
 })
 export class ListIntegration implements OnInit {
   protected readonly store = inject(ListIntegrationStore);
-
-  // rows = signal<Integration[]>([]);
 
   ngOnInit() {
     this.store.loadListIntegration();

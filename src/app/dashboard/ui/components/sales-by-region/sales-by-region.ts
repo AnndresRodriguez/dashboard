@@ -2,10 +2,11 @@ import { AfterViewInit, Component, inject } from '@angular/core';
 import { RadarChart } from '../shared/radar-chart/radar-chart';
 import { SalesRegionStore } from '../../../application/store/sales-region.store';
 import { DarkLightStore } from '../../store/dark-light.store';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-sales-by-region',
-  imports: [RadarChart],
+  imports: [RadarChart, NgxSkeletonLoaderModule],
   templateUrl: './sales-by-region.html',
   styleUrl: './sales-by-region.scss',
 })

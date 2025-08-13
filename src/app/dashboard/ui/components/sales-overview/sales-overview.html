@@ -1,51 +1,74 @@
-<section class="card bg-white dark:bg-blue-dark card-sales-overview w-full">
-  @if (store.loading()) {
-    <div class="flex justify-center items-center p-8">
-      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-      <span class="ml-2 text-gray-600">Cargando resumen...</span>
+@if (store.loading()) {
+  <div class="w-full">
+    <ngx-skeleton-loader
+      [theme]="{
+        height: '21.5rem',
+        width: '57rem',
+        borderRadius: '8px',
+      }"
+      [count]="1"
+    ></ngx-skeleton-loader>
+  </div>
+
+} @else if (store.hasError()) {
+  <div class="flex justify-center items-center p-8">
+    <div class="text-red-600 text-center">
+      <p class="font-semibold">Error al cargar datos</p>
+      <p class="text-sm mt-1">
+        No hemos podido obtener la información en este momento, por favor
+        intentalo de nuevo
+      </p>
+      <button
+        (click)="store.loadSalesOverview()"
+        class="mt-2 px-4 py-2 bg-blue text-white rounded font-normal text-sm hover:bg-blue-700"
+      >
+        Reintentar
+      </button>
     </div>
-  } @else if (store.hasError()) {
-    <div class="flex justify-center items-center p-8">
-      <div class="text-red-600 text-center">
-        <p class="font-semibold">Error al cargar datos</p>
-        <p class="text-sm mt-1">{{ store.error() }}</p>
-        <button
-          (click)="store.loadSalesOverview()"
-          class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-        >
-          Reintentar
-        </button>
-      </div>
-    </div>
-  } @else if (store.isEmpty()) {
-    <div class="flex justify-center items-center p-8">
-      <p class="text-gray-500">No hay datos disponibles</p>
-    </div>
-  } @else {
+  </div>
+
+} @else if (store.isEmpty()) {
+  <div class="flex justify-center items-center p-8">
+    <p class="text-gray-500">No hay datos disponibles</p>
+  </div>
+} @else {
+
+  <section class="card bg-white dark:bg-blue-dark card-sales-overview w-full">
     <div class="sales-overview-title-values">
       <div class="sales-overview-title">
-        <h3 class="text-black dark:text-white font-bold text-lg"> Sales Overview </h3>
+        <h3 class="text-black dark:text-white font-bold text-lg">
+          Sales Overview
+        </h3>
       </div>
       <div class="sales-overview-values">
         <div class="sales-overview-revenue">
           <div class="flex items-center gap-1">
             <div class="h-[6px] w-[6px] bg-blue rounded-full"></div>
-            <p class="text-black-60 dark:text-white-60 font-normal text-sm"> Total Revenue </p>
+            <p class="text-black-60 dark:text-white-60 font-normal text-sm">
+              Total Revenue
+            </p>
           </div>
-          <h3 class="text-black dark:text-white font-bold text-lg"> ${{ store.salesOverview()?.totalRevenue | number: '1.2-2' }} </h3>
+          <h3 class="text-black dark:text-white font-bold text-lg">
+            ${{ store.salesOverview()?.totalRevenue | number: "1.2-2" }}
+          </h3>
         </div>
         <div class="sales-overview-target">
           <div class="flex items-center gap-1">
             <div class="h-[6px] w-[6px] bg-orange rounded-full"></div>
-            <p class="text-black-60 dark:text-white-60 font-normal text-sm"> Total Target </p>
+            <p class="text-black-60 dark:text-white-60 font-normal text-sm">
+              Total Target
+            </p>
           </div>
-          <h3 class="text-black dark:text-white font-bold text-lg"> ${{ store.salesOverview()?.totalTarget | number: '1.2-2' }} </h3>
+          <h3 class="text-black dark:text-white font-bold text-lg">
+            ${{ store.salesOverview()?.totalTarget | number: "1.2-2" }}
+          </h3>
         </div>
       </div>
     </div>
-
     <div class="sales-overview-chart">
-      <app-line-chart [data]="store.salesOverview()?.data || []"></app-line-chart>
+      <app-line-chart
+        [data]="store.salesOverview()?.data || []"
+      ></app-line-chart>
     </div>
-  }
-</section>
+  </section>
+}

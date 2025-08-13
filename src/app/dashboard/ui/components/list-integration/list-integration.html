@@ -1,164 +1,186 @@
-<div class="card bg-white dark:bg-blue-dark">
-  <div class="list-table">
-    <h2 class="text-lg font-semibold text-black dark:text-white">List of Integration</h2>
-  </div>
+@if (store.loading()) {
+  <ngx-skeleton-loader
+    [theme]="{
+      height: '19.5rem',
+      width: '52.5rem',
+      borderRadius: '8px',
+    }"
+    [count]="1"
+  ></ngx-skeleton-loader>
 
-  <div class="mt-4 overflow-hidden rounded-xl border border-black/16 dark:border-blue-dark">
-    <!-- Header -->
-    <div
-      class="list-header-table bg-blue-8 text-sm text-black-60
-      dark:bg-white/8  dark:text-white/60"
-    >
-      <div class="flex items-center">
-        <input
-          type="checkbox"
-          class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500"
-          [checked]="allChecked()"
-          [indeterminate]="someChecked()"
-          (change)="toggleAll($any($event.target).checked)"
-        />
-      </div>
+}
 
+@else if (store.hasError()) {
+  <div class="flex justify-center items-center p-8">
+    <div class="text-red-600 text-center">
+      <p class="font-semibold">Error al cargar datos</p>
+      <p class="text-sm mt-1">
+        No hemos podido obtener la información en este momento, por favor
+        intentalo de nuevo
+      </p>
       <button
-        class="flex items-center gap-1 text-left font-normal text-sm hover:text-gray-900 cursor-pointer"
-        (click)="sortBy('application')"
-        title="Sort by Application"
+        (click)="store.loadListIntegration()"
+        class="mt-2 px-4 py-2 bg-blue text-white rounded font-normal text-sm hover:bg-blue-700"
       >
-        Application
-        @if (isSorted('application')) {
-          <svg
-            class="h-4 w-4"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            @if (isSorted('application') === 'asc') {
-              <path d="M5 12l5-5 5 5" />
-            }
-            @if (isSorted('application') === 'desc') {
-              <path d="M5 8l5 5 5-5" />
-            }
-          </svg>
-        }
-      </button>
-
-      <button
-        class="flex items-center gap-1 hover:text-gray-900 cursor-pointer text-sm font-normal"
-        (click)="sortBy('type')"
-        title="Sort by Type"
-      >
-        Type
-        @if (isSorted('type')) {
-          <svg
-            class="h-4 w-4"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            @if (isSorted('type') === 'asc') {
-              <path d="M5 12l5-5 5 5" />
-            }
-            @if (isSorted('type') === 'desc') {
-              <path d="M5 8l5 5 5-5" />
-            }
-          </svg>
-        }
-      </button>
-
-      <button
-        class="flex items-center gap-1 hover:text-gray-900 cursor-pointer text-sm font-normal"
-        (click)="sortBy('rate')"
-        title="Sort by Rate"
-      >
-        Rate
-        @if (isSorted('rate')) {
-          <svg
-            class="h-4 w-4"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            @if (isSorted('rate') === 'asc') {
-              <path d="M5 12l5-5 5 5" />
-            }
-            @if (isSorted('rate') === 'desc') {
-              <path d="M5 8l5 5 5-5" />
-            }
-          </svg>
-        }
-      </button>
-
-      <button
-        class="flex items-center justify-end gap-1 hover:text-gray-900 cursor-pointer text-sm font-normal"
-        (click)="sortBy('profit')"
-        title="Sort by Profit"
-      >
-        Profit
-        @if (isSorted('profit')) {
-          <svg
-            class="h-4 w-4"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            @if (isSorted('profit') === 'asc') {
-              <path d="M5 12l5-5 5 5" />
-            }
-            @if (isSorted('profit') === 'desc') {
-              <path d="M5 8l5 5 5-5" />
-            }
-          </svg>
-        }
+        Reintentar
       </button>
     </div>
+  </div>
+}
 
-    <!-- Rows -->
-    @for (row of pagedRows(); track row.id; let last = $last) {
+@else if (store.isEmpty()) {
+  <div class="flex justify-center items-center p-8">
+    <p class="text-gray-500">No hay métricas disponibles</p>
+  </div>
+}
+
+@else {
+  <div class="card bg-white dark:bg-blue-dark">
+    <div class="list-table">
+      <h2 class="text-lg font-semibold text-black dark:text-white">
+        List of Integration
+      </h2>
+    </div>
+
     <div
-      class="list-row-table items-center px-4 py-4 text-sm"
-      [class.border-b]="!$last"
-      [class.border-gray-100]="!$last"
+      class="mt-4 overflow-hidden rounded-xl border border-black/16 dark:border-blue-dark"
     >
-      <!-- Checkbox -->
-      <div class="flex items-center">
-        <input
-          type="checkbox"
-          class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500"
-          [checked]="row.isSelected"
-          (change)="row.isSelected = $any($event.target).checked"
-        />
-      </div>
-
-      <!-- App + logo SVG oficial -->
-      <div class="flex items-center gap-3 min-w-0">
-        <div
-          class="relative w-7 h-7 object-cover"
-        >
-          <!-- Logos vectoriales optimizados con NgOptimizedImage -->
-          <img
-            ngSrc="{{ row.logo }}"
-            [alt]="row.application"
-            fill
+      <!-- Header -->
+      <div
+        class="list-header-table bg-blue-8 text-sm text-black-60 dark:bg-white/8 dark:text-white/60"
+      >
+        <div class="flex items-center">
+          <input
+            type="checkbox"
+            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500"
+            [checked]="allChecked()"
+            [indeterminate]="someChecked()"
+            (change)="toggleAll($any($event.target).checked)"
           />
         </div>
-        <span class="truncate font-normal text-black dark:text-white">{{ row.application }}</span>
+
+        <button
+          class="flex items-center gap-1 text-left font-normal text-sm hover:text-gray-900 cursor-pointer"
+          (click)="sortBy('application')"
+          title="Sort by Application"
+        >
+          Application
+          @if (isSorted("application")) {
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              @if (isSorted("application") === "asc") {
+                <path d="M5 12l5-5 5 5" />
+              }
+              @if (isSorted("application") === "desc") {
+                <path d="M5 8l5 5 5-5" />
+              }
+            </svg>
+          }
+        </button>
+
+        <button
+          class="flex items-center gap-1 hover:text-gray-900 cursor-pointer text-sm font-normal"
+          (click)="sortBy('type')"
+          title="Sort by Type"
+        >
+          Type
+          @if (isSorted("type")) {
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              @if (isSorted("type") === "asc") {
+                <path d="M5 12l5-5 5 5" />
+              }
+              @if (isSorted("type") === "desc") {
+                <path d="M5 8l5 5 5-5" />
+              }
+            </svg>
+          }
+        </button>
+
+        <button
+          class="flex items-center gap-1 hover:text-gray-900 cursor-pointer text-sm font-normal"
+          (click)="sortBy('rate')"
+          title="Sort by Rate"
+        >
+          Rate
+          @if (isSorted("rate")) {
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              @if (isSorted("rate") === "asc") {
+                <path d="M5 12l5-5 5 5" />
+              }
+              @if (isSorted("rate") === "desc") {
+                <path d="M5 8l5 5 5-5" />
+              }
+            </svg>
+          }
+        </button>
+
+        <button
+          class="flex items-center justify-end gap-1 hover:text-gray-900 cursor-pointer text-sm font-normal"
+          (click)="sortBy('profit')"
+          title="Sort by Profit"
+        >
+          Profit
+          @if (isSorted("profit")) {
+            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              @if (isSorted("profit") === "asc") {
+                <path d="M5 12l5-5 5 5" />
+              }
+              @if (isSorted("profit") === "desc") {
+                <path d="M5 8l5 5 5-5" />
+              }
+            </svg>
+          }
+        </button>
       </div>
 
-      <!-- Type -->
-      <div class="text-black/60 dark:text-white/60">{{ row.type }}</div>
+      <!-- Rows -->
+      @for (row of pagedRows(); track row.id; let last = $last) {
+        <div
+          class="list-row-table items-center px-4 py-4 text-sm"
+          [class.border-b]="!$last"
+          [class.border-gray-100]="!$last"
+        >
+          <!-- Checkbox -->
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500"
+              [checked]="row.isSelected"
+              (change)="row.isSelected = $any($event.target).checked"
+            />
+          </div>
 
-      <!-- Rate -->
-      <div class="flex items-center gap-3">
-        <div class="h-2 w-40 rounded-full bg-blue-20">
-          <div
-            class="h-2 rounded-full bg-blue"
-            [style.width.%]="row.rate"
-          ></div>
+          <!-- App + logo SVG oficial -->
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="relative w-7 h-7 object-cover">
+              <!-- Logos vectoriales optimizados con NgOptimizedImage -->
+              <img ngSrc="{{ row.logo }}" [alt]="row.application" fill />
+            </div>
+            <span class="truncate font-normal text-black dark:text-white">{{
+              row.application
+            }}</span>
+          </div>
+
+          <!-- Type -->
+          <div class="text-black/60 dark:text-white/60">{{ row.type }}</div>
+
+          <!-- Rate -->
+          <div class="flex items-center gap-3">
+            <div class="h-2 w-40 rounded-full bg-blue-20">
+              <div
+                class="h-2 rounded-full bg-blue"
+                [style.width.%]="row.rate"
+              ></div>
+            </div>
+            <span class="text-black/60 dark:text-white/60">{{ row.rate }}%</span>
+          </div>
+
+          <!-- Profit -->
+          <div class="text-right font-medium text-black/60 dark:text-white/60">
+            {{ row.profit | currency: "USD" : "symbol" : "1.0-2" }}
+          </div>
         </div>
-        <span class="text-black/60 dark:text-white/60">{{ row.rate }}%</span>
-      </div>
-
-      <!-- Profit -->
-      <div class="text-right font-medium text-black/60 dark:text-white/60">
-        {{ row.profit | currency: "USD" : "symbol" : "1.0-2" }}
-      </div>
+      }
     </div>
-    }
   </div>
-</div>
+}
+
