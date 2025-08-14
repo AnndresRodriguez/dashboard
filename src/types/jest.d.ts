@@ -5,7 +5,7 @@ declare global {
       toHaveText(text: string): R;
       toContainText(text: string): R;
       toHaveAttribute(attr: string, value?: string): R;
-      toHaveProperty(prop: string, value?: any): R;
+      toHaveProperty(prop: string, value?: unknown): R;
     }
   }
 }
