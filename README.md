@@ -35,6 +35,7 @@ Un dashboard moderno construido con **Angular 20** siguiendo los principios de *
 - 📊 **ECharts**: Gráficos interactivos y responsivos
 - 🎨 **Tailwind CSS**: Estilos modernos y utilitarios
 - 🧪 **Jest**: Testing unitario completo
+- 🚀 **Cypress**: Testing end-to-end robusto
 - 📱 **Responsive Design**: Optimizado para todos los dispositivos
 - 🌙 **Tema Oscuro/Claro**: Soporte para múltiples temas
 
@@ -53,14 +54,18 @@ Un dashboard moderno construido con **Angular 20** siguiendo los principios de *
 - **Material Design Icons** - Iconografía
 
 ### Testing
-- **Jest 29.5.0** - Framework de testing
+- **Jest 29.5.0** - Framework de testing unitario
 - **jest-preset-angular 14.0.0** - Preset para Angular
 - **jest-html-reporter 4.3.0** - Reportes HTML de tests
+- **Cypress 14.5.4** - Framework de testing end-to-end
+- **@cypress/schematic 4.1.0** - Integración de Cypress con Angular
+- **eslint-plugin-cypress 5.1.1** - Linting para tests de Cypress
 
 ### Herramientas de Desarrollo
 - **ESLint 9.29.0** - Linter de código
 - **Prettier 3.6.2** - Formateador de código
 - **PostCSS 8.5.6** - Procesador de CSS
+- **start-server-and-test 2.0.13** - Orquestación de tests E2E
 
 ## 🏗️ Arquitectura
 
@@ -203,24 +208,26 @@ npm run watch
 
 ## 🧪 Testing
 
-### Ejecutar Tests Unitarios
+### Testing Unitario con Jest
+
+#### Ejecutar Tests Unitarios
 ```bash
 npm test
 ```
 
-### Tests en Modo Watch
+#### Tests en Modo Watch
 ```bash
 npm run test:watch
 ```
 
-### Tests con Cobertura
+#### Tests con Cobertura
 ```bash
 npm run test:coverage
 ```
 
 Los reportes de cobertura se generan en `reports/test-report.html`
 
-### Estructura de Tests
+#### Estructura de Tests Unitarios
 ```
 src/app/dashboard/
 ├── domain/models/test/      # Tests de modelos
@@ -228,6 +235,84 @@ src/app/dashboard/
 ├── application/use-case/test/ # Tests de casos de uso
 ├── infrastructure/adapters/test/ # Tests de adaptadores
 └── ui/components/test/      # Tests de componentes
+```
+
+### Testing End-to-End con Cypress
+
+#### Ejecutar Tests E2E
+```bash
+# Ejecutar tests en modo headless
+npm run e2e
+
+# Ejecutar tests con interfaz gráfica
+npm run e2e:open
+
+# Ejecutar Cypress directamente
+npm run cypress:open
+npm run cypress:run
+```
+
+#### Configuración de Cypress
+
+El proyecto incluye una configuración completa de Cypress con:
+
+- **Base URL**: `http://localhost:4200`
+- **Viewport**: 1280x720
+- **Timeouts**: 10 segundos para comandos y requests
+- **Screenshots**: Automáticos en fallos
+- **Videos**: Deshabilitados para optimizar velocidad
+
+#### Estructura de Tests E2E
+```
+cypress/
+├── e2e/                     # Tests end-to-end
+│   ├── dashboard.cy.ts     # Tests del dashboard principal
+│   ├── app.cy.ts           # Tests básicos de la aplicación
+│   ├── 1-getting-started/  # Tests de introducción
+│   └── 2-advanced-examples/ # Tests avanzados
+├── fixtures/               # Datos de prueba
+├── support/                # Archivos de soporte
+│   ├── commands.ts         # Comandos personalizados
+│   ├── component.ts        # Soporte para testing de componentes
+│   └── e2e.ts             # Configuración E2E
+└── component/              # Tests de componentes (opcional)
+```
+
+#### Características de los Tests E2E
+
+**Tests del Dashboard:**
+- ✅ Verificación de carga inicial con skeletons
+- ✅ Validación de métricas de ventas
+- ✅ Manejo de estados de error
+- ✅ Interacción con gráficos
+- ✅ Responsive design testing
+- ✅ Cambio de tema oscuro/claro
+
+**Comandos Personalizados:**
+- `cy.waitForAngular()` - Espera a que Angular esté listo
+- `cy.get('[data-test-id="..."]')` - Selectores consistentes
+- Interceptación de APIs para testing de errores
+
+#### Ejemplo de Test E2E
+
+```typescript
+describe('Dashboard - Sales Metrics', () => {
+  beforeEach(() => {
+    cy.visit('/');
+  });
+
+  it('should display sales metrics after loading', () => {
+    // Verificar estado de carga
+    cy.get('[data-test-id="loading-skeleton-container"]').should('be.visible');
+    
+    // Esperar a que se carguen las métricas
+    cy.get('[data-test-id="metric-card"]', { timeout: 10000 }).should('be.visible');
+    
+    // Verificar contenido de las métricas
+    cy.get('[data-test-id="metric-title"]').should('not.be.empty');
+    cy.get('[data-test-id="metric-value"]').should('not.be.empty');
+  });
+});
 ```
 
 ### Manejo de Errores
@@ -264,9 +349,6 @@ El dashboard implementa un sistema de carga elegante utilizando **ngx-skeleton-l
 Cuando ocurre un error en la carga de datos, el dashboard muestra un estado de error informativo y amigable.
 <img width="1432" height="659" alt="Estados de Error" src="https://github.com/user-attachments/assets/37fe7733-7e8c-4352-817e-7b7970e7c9f4" />
 
-
-![Estado de Error](./assets/error-state.png)
-
 **Características del Estado de Error:**
 - ❌ **Mensaje Claro**: Información específica sobre el error
 - 🔄 **Opción de Reintento**: Botón para intentar cargar nuevamente
@@ -281,9 +363,13 @@ Cuando ocurre un error en la carga de datos, el dashboard muestra un estado de e
 | `npm start` | Inicia el servidor de desarrollo |
 | `npm run build` | Construye la aplicación para producción |
 | `npm run watch` | Construye en modo watch |
-| `npm test` | Ejecuta tests unitarios |
-| `npm run test:watch` | Ejecuta tests en modo watch |
-| `npm run test:coverage` | Ejecuta tests con cobertura |
+| `npm test` | Ejecuta tests unitarios con Jest |
+| `npm run test:watch` | Ejecuta tests unitarios en modo watch |
+| `npm run test:coverage` | Ejecuta tests unitarios con cobertura |
+| `npm run e2e` | Ejecuta tests end-to-end (headless) |
+| `npm run e2e:open` | Ejecuta tests end-to-end con interfaz gráfica |
+| `npm run cypress:open` | Abre Cypress Test Runner |
+| `npm run cypress:run` | Ejecuta Cypress en modo headless |
 | `npm run lint` | Ejecuta el linter |
 | `npm run lint:fix` | Corrige errores del linter automáticamente |
 
