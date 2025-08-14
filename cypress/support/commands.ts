@@ -21,17 +21,6 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      // Add custom commands here
-      // login(email: string, password: string): Chainable<void>
-      // drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-      // dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-    }
-  }
-}
-
 // Custom command to wait for Angular to be ready
 Cypress.Commands.add('waitForAngular', () => {
   cy.window().then((win) => {

@@ -1,10 +1,9 @@
 import { Component, input } from '@angular/core';
-import { DecimalPipe, PercentPipe } from '@angular/common';
 import { StatusMetricEnum } from '../../../enums/status-metric-enum';
 
 @Component({
   selector: 'app-card-metric',
-  imports: [DecimalPipe, PercentPipe],
+  imports: [],
   templateUrl: './card-metric.html',
   styleUrl: './card-metric.scss',
 })
