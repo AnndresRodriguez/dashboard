@@ -1,0 +1,18 @@
+{
+  "salesOverview": {
+    "totalRevenue": 50345.67,
+    "totalTarget": 70321.45,
+    "data": [
+      { "month": "Apr 2023", "revenue": 18200, "target": 22000 },
+      { "month": "May 2023", "revenue": 21500, "target": 24000 },
+      { "month": "Jun 2023", "revenue": 19800, "target": 25000 },
+      { "month": "Jul 2023", "revenue": 22400, "target": 26000 },
+      { "month": "Aug 2023", "revenue": 24100, "target": 27000 },
+      { "month": "Sep 2023", "revenue": 25800, "target": 28000 },
+      { "month": "Oct 2023", "revenue": 27200, "target": 29000 },
+      { "month": "Nov 2023", "revenue": 15780.21, "target": 30000 },
+      { "month": "Dec 2023", "revenue": 28900, "target": 32000 },
+      { "month": "Jan 2024", "revenue": 31200, "target": 35000 }
+    ]
+  }
+}

@@ -2,15 +2,16 @@
   <div class="w-full">
     <ngx-skeleton-loader
       [theme]="{
-        height: '21.5rem',
-        width: '57rem',
+        height: '21rem',
+        width: '100%',
         borderRadius: '8px',
       }"
       [count]="1"
     ></ngx-skeleton-loader>
   </div>
+}
 
-} @else if (store.hasError()) {
+@else if (store.hasError()) {
   <div class="flex justify-center items-center p-8">
     <div class="text-red-600 text-center">
       <p class="font-semibold">Error al cargar datos</p>
@@ -26,48 +27,44 @@
       </button>
     </div>
   </div>
+}
 
-} @else if (store.isEmpty()) {
+@else if (store.isEmpty()) {
   <div class="flex justify-center items-center p-8">
-    <p class="text-gray-500">No hay datos disponibles</p>
+    <p class="text-gray-500">No hay datos de resumen de ventas</p>
   </div>
-} @else {
+}
 
-  <section class="card bg-white dark:bg-blue-dark card-sales-overview w-full">
+@else {
+  <section class="card bg-white dark:bg-blue-dark card-sales-overview">
+    <h2 class="text-lg font-semibold text-black dark:text-white">
+      Sales Overview
+    </h2>
+
     <div class="sales-overview-title-values">
-      <div class="sales-overview-title">
-        <h3 class="text-black dark:text-white font-bold text-lg">
-          Sales Overview
-        </h3>
-      </div>
       <div class="sales-overview-values">
         <div class="sales-overview-revenue">
-          <div class="flex items-center gap-1">
-            <div class="h-[6px] w-[6px] bg-blue rounded-full"></div>
-            <p class="text-black-60 dark:text-white-60 font-normal text-sm">
-              Total Revenue
-            </p>
-          </div>
-          <h3 class="text-black dark:text-white font-bold text-lg">
-            ${{ store.salesOverview()?.totalRevenue | number: "1.2-2" }}
-          </h3>
+          <span class="text-sm text-black/60 dark:text-white/60"
+            >Total Revenue</span
+          >
+          <span class="font-semibold text-black dark:text-white">{{
+            store.salesOverview()?.totalRevenue | currency : 'USD' : 'symbol' : '1.2-2'
+          }}</span>
         </div>
         <div class="sales-overview-target">
-          <div class="flex items-center gap-1">
-            <div class="h-[6px] w-[6px] bg-orange rounded-full"></div>
-            <p class="text-black-60 dark:text-white-60 font-normal text-sm">
-              Total Target
-            </p>
-          </div>
-          <h3 class="text-black dark:text-white font-bold text-lg">
-            ${{ store.salesOverview()?.totalTarget | number: "1.2-2" }}
-          </h3>
+          <span class="text-sm text-black/60 dark:text-white/60"
+            >Total Target</span
+          >
+          <span class="font-semibold text-black dark:text-white">{{
+            store.salesOverview()?.totalTarget | currency : 'USD' : 'symbol' : '1.2-2'
+          }}</span>
         </div>
       </div>
     </div>
+
     <div class="sales-overview-chart">
       <app-line-chart
-        [data]="store.salesOverview()?.data || []"
+        [data]="store.salesOverview()?.data ?? []"
       ></app-line-chart>
     </div>
   </section>

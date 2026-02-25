@@ -1,0 +1,31 @@
+{
+  "integrations": [
+    {
+      "id": "1",
+      "application": "Stripe",
+      "logo": "stripe",
+      "type": "Finance",
+      "rate": 33,
+      "profit": 10998.28,
+      "isSelected": false
+    },
+    {
+      "id": "2",
+      "application": "Zapier",
+      "logo": "zapier",
+      "type": "CRM",
+      "rate": 27,
+      "profit": 8998.59,
+      "isSelected": false
+    },
+    {
+      "id": "3",
+      "application": "Shopify",
+      "logo": "shopify",
+      "type": "Marketplace",
+      "rate": 40,
+      "profit": 13331.24,
+      "isSelected": false
+    }
+  ]
+}

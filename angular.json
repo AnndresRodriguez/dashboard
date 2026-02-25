@@ -24,6 +24,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "mocks",
+                "output": "/mocks"
               }
             ],
             "styles": [
@@ -87,6 +92,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "mocks",
+                "output": "/mocks"
               }
             ],
             "styles": [

@@ -1,0 +1,36 @@
+{
+  "stats": [
+    {
+      "title": "Total income",
+      "value": 33328.12,
+      "currency": "USD",
+      "percentageChange": 12.24,
+      "changeType": "up",
+      "description": "Compared to last month"
+    },
+    {
+      "title": "Profit",
+      "value": 8583.09,
+      "currency": "USD",
+      "percentageChange": 2.63,
+      "changeType": "down",
+      "description": "Compared to last month"
+    },
+    {
+      "title": "Total views",
+      "value": 52234.32,
+      "currency": "",
+      "percentageChange": 1.46,
+      "changeType": "up",
+      "description": "Compared to last month"
+    },
+    {
+      "title": "Conversion rate",
+      "value": 6.12,
+      "currency": "%",
+      "percentageChange": 8.75,
+      "changeType": "down",
+      "description": "Compared to last month"
+    }
+  ]
+}

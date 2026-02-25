@@ -1,0 +1,10 @@
+{
+  "regionStats": [
+    { "name": "Asia", "value": 2201 },
+    { "name": "Europe", "value": 2865 },
+    { "name": "Americas", "value": 1762 },
+    { "name": "Africa", "value": 1591 },
+    { "name": "Middle East", "value": 1749 },
+    { "name": "Pacific", "value": 2475 }
+  ]
+}
